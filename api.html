@@ -1,0 +1,81 @@
+<p>
+	
+	Access Token: <span id = "access_token" ></span>
+	<br>
+	Artist: <span id = "artist" ></span>
+
+</p>
+
+<script>
+
+	const key = document.getElementById("access_token");
+	const artist = document.getElementById("artist");
+	var accessToken;
+	
+	// fetch("https://accounts.spotify.com/api/token", {
+	//   method: "POST",
+	//   headers: {
+	//     "Content-Type": "application/x-www-form-urlencoded",
+	//   },
+	//   body: "grant_type=client_credentials&client_id=99111492024c4ccd84a141ba2f8277ee&client_secret=277577a62fd24cc884b6506b1351cd97",
+	// })
+	//   .then(response => response.json())
+	//   .then(data => {
+	//     // Handle the response data
+
+	//     accessToken = data.access_token;
+	//     key.innerHTML = accessToken;
+	//     console.log(accessToken);
+	    
+	//   })
+	//   .catch(error => {
+	//     // Handle any errors
+	//     console.error(error);
+	//   });
+
+	// fetch('https://api.spotify.com/v1/artists/2wpWOzQE5TpA0dVnh5YD08?si=f8087e044fc147fa', {
+	//   headers: {
+	//     'Authorization': `Bearer ${accessToken}`,
+	//     'Content-Type': 'application/json',
+	//   },
+	// })
+	//   .then(response => response.json())
+	//   .then(data => {
+	//     // Handle the response data
+	//     console.log(data.name);
+
+	//     artist.innerHTML = data.name;
+	//   })
+	//   .catch(error => {
+	//     // Handle any errors
+	//     console.error(error);
+	//   });
+
+	const searchQuery = 'Test Drive';
+
+	fetch(`https://api.spotify.com/v1/search?type=user&q=${searchQuery}`, {
+	  headers: {
+	    Authorization: `Bearer `
+	  }
+	})
+	  .then(response => response.json())
+	  .then(data => {
+	    const playlist = data.playlists.items[0];
+
+	    if (playlist) {
+	      console.log('Playlist Name:', playlist.name);
+	      console.log("Playlist description: ", playlist.description);
+	      console.log("Owner: ", playlist.owner.display_name);
+	    } else {
+	      console.log('Playlist not found.');
+	    }
+	  })
+	  .catch(error => {
+	    console.error('Error:', error);
+	  });
+
+
+
+</script>
+
+https://open.spotify.com/intl-pt/artist/2wpWOzQE5TpA0dVnh5YD08?si=f8087e044fc147fa

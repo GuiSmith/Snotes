@@ -1,0 +1,49 @@
+.topBar {
+
+	margin: 0;
+	background: linear-gradient(rgb(238, 130, 238), rgba(128,0,128,0.6));
+	padding: 15px 0;
+
+}
+
+.options, .back-button {
+
+	list-style-type: none;
+	margin-top: 10px;
+
+}
+
+.back-button a {
+
+	text-decoration: none;
+	color: rgba(0,0,0,0.6);
+	font-size: 20px;
+
+}
+
+.back-button a:hover {
+
+	color: rgba(0,0,0,1);
+
+}
+
+.options li {
+
+	display: inline;
+	padding: 10px;
+
+}
+
+.options li a {
+
+	text-decoration: none;
+	color: black;
+	font-size: 20px;
+
+}
+
+.options li a:hover {
+
+	opacity: 0.5;
+
+}
