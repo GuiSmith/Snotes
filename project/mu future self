@@ -1,0 +1,15 @@
+Ok, if you're reading this, it's probably because it has been a while since you've opened this project and you probably forgot something.
+Here I am going to teach you how to use github like a human being, ok? Let's go
+
+First, create the github repository
+Second, go to the linux ubuntu's terminal
+Third, go to the folder you want to push (folder project? just cd /var/www/html/php <-- the folder php will be uploaded)
+Fourth, type "git init -b main"
+Fifth,  add the files with "git add ."
+Sixth, connect the local repository with the github repository with "git remote add origin (<-- origin may be the name of the repository, it can be just a name you can choose) github.link (<-- here is the link github will show you when you create the repository, like https://github.com/GuiSmith/notes.git)"
+Seventh, commit the upload with "git commit -m 'message of the commit'"
+Eigth, push the local repository with "git push origin (<-- name of the local repository) main/master (<-- not sure which one, try one then the other)"
+Ninth, it will ask for your username (GuiSmith) and your access token
+Tenth, check the github repository for changes
+
+If you forgot your access token or how to create it, just go to settings, developers tool, access token, create one;
