@@ -44,9 +44,11 @@
 
 	</div>
 
+	<!-- Send -->
+
 	<div class = "row" >
 		
-		<div class = "col-sm-8 text-left mt-1" style = "padding: 0" >
+		<div class = "col-sm-8 text-left mt-1">
 			
 			<small class = "text-danger" >
 				
@@ -74,7 +76,7 @@
 
 		</div>
 
-		<div class = "col-sm-4 text-right" >
+		<div class = "col-sm-4 text-right pr-0" >
 			
 			<button type = "submit" class = "btn btn-info" >
 				
