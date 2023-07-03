@@ -29,6 +29,8 @@
 
   }
 
+  $origin = new Option("origin", "Origem", "both", 151897914, true);
+  $home = new Option("home", "Snotes", "both", 815135, true);
   $stories = new Option("stories", "Histórias", "both", 192015189519, true);
   $users = new Option("users", "Usuários", "yes", 211951819, true);
   $notes = new Option("notes", "Anotações", "both", 141520519, true);
@@ -39,5 +41,48 @@
   $log_out = new Option("log_out", "Sair", "yes", 12157152120, true);
 
   $objects = Option::getAllObjects();
+
+  // Functions
+
+  function validate($data, $type){
+
+    switch ($type) {
+      
+      case "name":
+        
+        if (preg_match('/^[a-zA-Z]+$/', $data)) {
+
+          return true;
+
+        }else{
+
+         return false;
+
+        }
+
+        break;
+
+      case "password":
+
+        if (preg_match('/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d!@#$%^&*()_+\-=[\]{};:"\\|,.<>\/?]{8,}$/', $data)) {
+
+          return true;
+
+        }else{
+
+          return false;
+
+        }
+
+        break;
+      
+      default:
+        // code...
+        break;
+    }
+
+  }
+
+
 
 ?>

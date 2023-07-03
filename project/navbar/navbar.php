@@ -1,18 +1,12 @@
-<div class = "row topBar mr-0 ml-0" >
+<div class = "row topBar" >
 
 	<div class = "col-sm-1 text-left" >
 		
-		<img src = "media/logo.png" width = "50">
+		<img src = "media/logo.png" width = "45" class = "mt-1">
 
 	</div>
 
-	<div class = "col-sm-5 text-right">
-		
-		<h1 id = "navbar-title" ></h1>
-
-	</div>
-
-	<div class = "col-sm-6 text-right pr-4">
+	<div class = "col-sm-11 text-right">
 		
 		<ul class = "options" >
 			

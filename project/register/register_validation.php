@@ -8,6 +8,8 @@
 
 	require "../../connection.php";
 
+	require "../sources.php";
+
 	if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 		//Inputs
@@ -30,15 +32,7 @@
 
 		//Name
 
-		if (preg_match('/^[a-zA-Z\s]+$/', $name)) {
-
-			$_SESSION["register_validation"]["name"] = true;
-
-		}else{
-
-			$_SESSION["register_validation"]["name"] = false;
-
-		}
+		$_SESSION["register_validation"]["name"] = validate($name, "name");
 
 		//E-mail
 
@@ -54,19 +48,11 @@
 
 			$_SESSION["register_validation"]["email"] = true;
 
-		} 
+		}
 
 		//Password
 
-		if (preg_match('/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d!@#$%^&*()_+\-=[\]{};:"\\|,.<>\/?]{8,}$/', $password)) {
-
-			$_SESSION["register_validation"]["password"] = true;
-
-		}else{
-
-			$_SESSION["register_validation"]["password"] = false;
-
-		}
+		$_SESSION["register_validation"]["password"] = validate($password, "password");
 
 		//Inserting values
 
@@ -77,11 +63,6 @@
 			$hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
 			//Feeding the database
-
-			echo $name . "<br>";
-			echo $email . "<br>";
-			echo $password . "<br>";
-			echo $hashed_password . "<Br>";
 
 			$insert_sql = "INSERT INTO users (name, email, password) values ('$name', '$email', '$hashed_password')";
 
@@ -107,9 +88,15 @@
 
 	}else{
 
-		echo "ok";
+		if (validate("Guilherme", "name")) {
+			
+			echo "Sim";
 
-		// header("Location: register.php");
+		}else{
+
+			echo "Não";
+
+		}
 
 	}
 

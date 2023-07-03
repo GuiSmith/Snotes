@@ -1,65 +1,119 @@
-<div class = "row" >
-	
-	<div class = "col-sm-6" >
+<!-- Header -->
+
+<header class = "text-center mb-4 mt-4" >
 		
-		<h2 class = "text-center" >Perfil</h2>
+	<h3 class = "text-center" >Dados de Usuário</h3>
+
+	<h5>Mantenha seus dados atualizados</h5>
+
+</header>
+
+<form method = "POST" action = "profile/update_validation.php" class = "box-content">
+			
+	<!-- Name -->
+
+	<div class = "mb-3" >
+		
+		<label for = "name-input" class = "form-label" >
+
+			Nome
+
+		</label>
+
+		<input type = "text" name = "name" id = "name-input" class = "form-control" placeholder = "Digite aqui..." title = "Digite seu nome" value = "<?php if(isset($_SESSION['update_name'])){ echo $_SESSION['update_name']; }else{ echo $_SESSION["user"]["name"]; } ?>" maxlength = "25" required autofocus>
+
+		<div class = "text-right" >
+			
+			<small class = "text-info" >
+
+				Somente primeiro nome
+
+			</small>
+
+		</div>
 
 	</div>
 
-	<div class = "col-sm-6" >
+	<!-- Nick Name -->
+
+	<div class = "mb-3" >
 		
-		<h2 class = "text-center" >Configurações</h2>
+		<label for = "nickname-input" class = "form-label" >
+
+			Apelido
+
+		</label>
+
+		<input type = "text" name = "nickname" id = "nickname-input" class = "form-control" placeholder = "Digite aqui..." title = "Digite seu apelido" value = "<?php if(isset($_SESSION['update_nickname'])){ echo $_SESSION['update_nickname']; }else{ echo $_SESSION["user"]["nickname"]; } ?>" maxlength = "25">
+
+		<div class = "text-right" >
+			
+			<small class = "text-info" >
+
+				Digite um apelido único
+
+			</small>
+
+		</div>
 
 	</div>
 
-</div>
+	<!-- Enviar -->
 
-<!-- página de exemplo teste -->
-
-<div>
-	
-	<h2>
+	<div class = "row">
 		
-		Boas vindas <?php echo $_SESSION["user"]["name"] ?>
-
-	</h2>
-
-	<h5>Dados:</h5>
-
-	<ul>
-		
-		<li>
+		<div class = "text-left col-sm-8 mt-1 " >
 			
-			Nome: <?php echo $_SESSION["user"]["name"] ?>
+			<small class = "text-danger" >
+				
+				<?php
 
-		</li>
+					if (isset($_SESSION["update_validation"])) {
+						
+						//Name
 
-		<li>
+						if (!$_SESSION["update_validation"]["name"]) {
+							
+							echo "Nome inválido";
+
+						}
+
+						//Nickname
+
+						if (!$_SESSION["update_validation"]["nickname"]) {
+							
+							echo "Apelido já em uso" . "<br>";
+
+						}
+
+						//OK
+
+						if ($_SESSION["update_validation"]["nickname"] && $_SESSION["update_validation"]["name"]) {
+							
+							echo "Dados atualizados!";
+
+							unset($_SESSION["update_validation"]);
+
+						}
+
+					}
+
+				?>
+
+			</small>
+
+		</div>
+
+		<div class = "col-sm-4 text-right pr-0" >
 			
-			E-mail: <?php echo $_SESSION["user"]["email"] ?>
-
-		</li>
-
-		<li>
+			<button type = "submit" class = "btn btn-info">
 			
-			Criação: <?php echo $_SESSION["user"]["created_at"] ?>
+				Enviar
 
-		</li>
+			</button>
 
-		<li>
-			
-			Atualização: <?php echo $_SESSION["user"]["updated_at"] ?>
+		</div>
 
-		</li>
+	</div>
 
-		<li>
-			
-			Login: <?php echo $_SESSION["user"]["logged_at"] ?>
-
-		</li>
-
-	</ul>
-
-</div>
-
-<?php //foreach ($_SESSION["user"] as $key => $value) echo $key . ": " . $value . "<br>"; ?>
+</form>

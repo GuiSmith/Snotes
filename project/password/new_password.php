@@ -1,4 +1,4 @@
-<form method = "POST" action = "password/new_password_validation.php?passcode=<?php echo $_GET["passcode"] ?>" class = "ml-3 mt-3" style = "width: 20%">
+<form method = "POST" action = "password/new_password_validation.php?passcode=<?php echo $_GET["passcode"] ?>" class = "unlogged-form">
 
 	<!-- Password -->
 	

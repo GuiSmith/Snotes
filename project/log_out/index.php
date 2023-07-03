@@ -4,8 +4,8 @@
 
 	$_SESSION["logged"] = false;
 
-	unset($_SESSION["adm"]);
+	unset($_SESSION["user"]);
 
-	header("Location: main.php");
+	header("Location: main.php?page=12157914");
 
 ?> 

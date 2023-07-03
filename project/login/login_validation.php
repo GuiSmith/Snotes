@@ -54,7 +54,7 @@
 
 				$_SESSION["user"] = mysqli_fetch_assoc($user_result);
 
-				header("Location: ../main.php?page=141520519");
+				header("Location: ../main.php?page=151897914");
 
 			}else{
 

@@ -1,4 +1,4 @@
-<form id = "form" method = "POST" action = "password/password_validation.php" class = "ml-3 mt-3" style = "width: 20%" >
+<form id = "form" method = "POST" action = "password/password_validation.php" class = "unlogged-form">
 			
 	<!-- E-mail -->
 
@@ -12,7 +12,7 @@
 
 	<!-- Send Button -->
 
-	<div class = "row ml-0 mr-0" >
+	<div class = "row" >
 
 		<div class = "col-sm-8 text-left mt-1" style = "padding: 0" >
 			
@@ -36,7 +36,7 @@
 
 		</div>
 		
-		<div class = "col-sm-4 text-right" >
+		<div class = "col-sm-4 text-right pr-0" >
 			
 			<button type = "submit" class = "btn btn-info" >
 				
@@ -50,9 +50,9 @@
 
 </form>
 
-<div id = "message" class = "ml-3 mt-3" style = "width: 20%" >
-	
-	<h3 class = "text-center" >E-mail enviado!</h3>
+<div id = "message" class = "text-center unlogged-form" >
+
+	<h3>E-mail enviado!</h3>
 
 	<p>
 		

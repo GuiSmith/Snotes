@@ -1,5 +1,25 @@
-section {
+body {
 
-	padding: 10px;
+	background: linear-gradient(to right, #ccc, #eee);
+
+}
+
+.box-content {
+
+	width: 35%;
+	padding: 20px;
+	margin: 3em auto;
+	background: linear-gradient(to left, #ddd, #eee);
+  box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+
+}
+
+/*Bootstraps' row class has right and left margin, forcing the page to create a horizontal scroll. Code bellow overwrites it*/
+/**/
+div.row {
+
+	margin: 0;
+	
 
 }

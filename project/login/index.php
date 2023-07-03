@@ -2,94 +2,88 @@
 
 	unset($_SESSION["password_sent"]);
 
-	if (isset($_SESSION["logged"])) {
-		
-		if ($_SESSION["logged"]) {
-			
-			header("Location: main.php?page=192015199519");
-
-		}
-
-	}else{
-
-		$_SESSION["logged"] = false;
-
-	}
-
 ?>
 
-		<form method = "POST" action = "login/login_validation.php" class = "ml-3 mt-3" style = "width: 20%" >
-					
-			<!-- E-mail -->
+<header class = "text-center mt-4" >
 
-			<div class = "mb-3" >
+	<h3>Entre em sua conta</h3>
+	 
+	<h5>Faça login para visualizar histórias e anotações privadas!</h5>
+
+</header>
+
+<form method = "POST" action = "login/login_validation.php" class = "box-content" >
+			
+	<!-- E-mail -->
+
+	<div class = "mb-3" >
+		
+		<label for = "email-input" class = "form-label" >E-mail</label>
+
+		<input type = "email" name = "email" id = "email-input" class = "form-control" placeholder = "Digite aqui..." title = "Digite seu e-mail" value = "<?php if(isset($_SESSION["email-input"])) echo $_SESSION["email-input"] ?>" required autofocus >
+
+	</div>
+
+	<!-- Password -->
+
+	<div class = "mb-3" >
+		
+		<label for = "password-input" class = "form-label" >Senha</label>
+
+		<input type = "password" name = "password" id = "password-input" class = "form-control" placeholder = "Digite aqui..." title = "Digite sua senha" value = "<?php if(isset($_SESSION["password-input"])) echo $_SESSION["password-input"] ?>" required>
+
+		<div class = "text-right" >
+		
+			<small>
 				
-				<label for = "email-input" class = "form-label" >E-mail</label>
+				<a href = "?page=16119192315184" class = "text-danger" >Esqueceu sua senha?</a>
 
-				<input type = "email" name = "email" id = "email-input" class = "form-control" placeholder = "Digite aqui..." title = "Digite seu e-mail" value = "<?php if(isset($_SESSION["email-input"])) echo $_SESSION["email-input"] ?>" required autofocus >
+			</small>
 
-			</div>
+		</div>
 
-			<!-- Password -->
+	</div>
 
-			<div class = "mb-3" >
+	<div class = "row" >
+		
+		<div class = "col-sm-8 text-left mt-1" style = "padding: 0" >
+			
+			<small class = "text-danger" >
 				
-				<label for = "password-input" class = "form-label" >Senha</label>
+				<?php
 
-				<input type = "password" name = "password" id = "password-input" class = "form-control" placeholder = "Digite aqui..." title = "Digite sua senha" value = "<?php if(isset($_SESSION["password-input"])) echo $_SESSION["password-input"] ?>" required>
-
-				<div class = "text-right" >
-				
-					<small>
+					if (isset($_SESSION["login_validation"])) {
 						
-						<a href = "?page=16119192315184" class = "text-info" >Esqueceu sua senha?</a>
+						if (!$_SESSION["login_validation"]["email"]) {
+							
+							echo "E-mail não existente" . "<br>";
 
-					</small>
+						}
 
-				</div>
+						if (!$_SESSION["login_validation"]["password"]) {
+							
+							echo "Senha incorreta";
 
-			</div>
+						}
 
-			<div class = "row ml-0 mr-0" >
+					}
+
+				?>
+
+			</small>
+
+		</div>
+
+		<div class = "col-sm-4 text-right" >
+			
+			<button type = "submit" class = "btn btn-info" >
 				
-				<div class = "col-sm-8 text-left mt-1" style = "padding: 0" >
-					
-					<small class = "text-danger" >
-						
-						<?php
+				Entrar
 
-							if (isset($_SESSION["login_validation"])) {
-								
-								if (!$_SESSION["login_validation"]["email"]) {
-									
-									echo "E-mail não existente" . "<br>";
+			</button>
 
-								}
+		</div>
 
-								if (!$_SESSION["login_validation"]["password"]) {
-									
-									echo "Senha incorreta";
+	</div>
 
-								}
-
-							}
-
-						?>
-
-					</small>
-
-				</div>
-
-				<div class = "col-sm-4 text-right" >
-					
-					<button type = "submit" class = "btn btn-info" >
-						
-						Entrar
-
-					</button>
-
-				</div>
-
-			</div>
-
-		</form>
+</form>

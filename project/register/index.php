@@ -1,22 +1,12 @@
-<?php
+<header id = "register-header" class = "text-center mt-4" >
+	 
+	<h3>Registre sua conta</h3>
 
-	if (isset($_SESSION["logged"])) {
-		
-		if ($_SESSION["logged"]) {
-			
-			header("Location: main.php?page=192015199519");
+	<h5>Crie histórias, anotações e muito mais!</h5>
 
-		}
+</header>
 
-	}else{
-
-		$_SESSION["logged"] = false;
-
-	}
-
-?>
-
-<form method = "POST" action = "register/register_validation.php" class = "ml-3 mt-3" style = "width: 20%">
+<form method = "POST" action = "register/register_validation.php" class = "box-content">
 			
 	<!-- Name -->
 
@@ -92,9 +82,9 @@
 
 	<!-- Enviar -->
 
-	<div class = "row ml-0 mr-0" >
+	<div class = "row">
 		
-		<div class = "text-left col-sm-8 mt-1" >
+		<div class = "text-left col-sm-8 mt-1 " >
 			
 			<small class = "text-danger" >
 				
@@ -128,9 +118,9 @@
 
 		</div>
 
-		<div class = "col-sm-4" >
+		<div class = "col-sm-4 text-right pr-0" >
 			
-			<button type = "submit" class = "btn btn-info" >
+			<button type = "submit" class = "btn btn-info">
 			
 				Enviar
 

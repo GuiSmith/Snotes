@@ -1,15 +1,31 @@
 <?php
 
-	if ($_SESSION["user"]["adm"]) {
+	// if (isset($_SESSION["user"]["adm"])) {
 		
-		echo "ADM";
+	// 	if ($_SESSION["user"]["adm"]) {
+			
+	// 		echo "ADM"
 
-	}else{
+	// 	}else{
 
-		echo "Normal";
+	// 		echo "Normal"
 
-	}
+	// 	}
 
-	echo "haha";
+	// }else{
+
+	// 	echo "Not logged in";
+
+	// }
+
+	// if ($_SESSION["user"]["adm"]) {
+			
+	// 		echo "ADM"
+
+	// 	}else{
+
+	// 		echo "Normal"
+
+	// 	}
 
 ?>
