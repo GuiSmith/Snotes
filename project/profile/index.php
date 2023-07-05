@@ -8,11 +8,11 @@
 
 </header>
 
-<form method = "POST" action = "profile/update_validation.php" class = "box-content">
+<form method = "POST" action = "profile/update_validation.php" class = "box-content box-page">
 			
 	<!-- Name -->
 
-	<div class = "mb-3" >
+	<div class = "form-group" >
 		
 		<label for = "name-input" class = "form-label" >
 
@@ -36,7 +36,7 @@
 
 	<!-- Nick Name -->
 
-	<div class = "mb-3" >
+	<div class = "form-group" >
 		
 		<label for = "nickname-input" class = "form-label" >
 
@@ -60,7 +60,7 @@
 
 	<!-- Enviar -->
 
-	<div class = "row">
+	<div class = "row form-group">
 		
 		<div class = "text-left col-sm-8 mt-1 " >
 			
@@ -104,7 +104,7 @@
 
 		</div>
 
-		<div class = "col-sm-4 text-right pr-0" >
+		<div class = "col-sm-4 text-right submit-button" >
 			
 			<button type = "submit" class = "btn btn-info">
 			

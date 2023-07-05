@@ -6,11 +6,11 @@
 
 </header>
 
-<form method = "POST" action = "register/register_validation.php" class = "box-content">
+<form method = "POST" action = "register/register_validation.php" class = "box-content box-page">
 			
 	<!-- Name -->
 
-	<div class = "mb-3" >
+	<div class = "form-group" >
 		
 		<label for = "name-input" class = "form-label" >
 
@@ -18,7 +18,7 @@
 
 		</label>
 
-		<input type = "text" name = "name" id = "name-input" class = "form-control" placeholder = "Digite aqui..." title = "Digite seu nome" value = "<?php if(isset($_SESSION['name-input'])) echo $_SESSION['name-input'] ?>" maxlength = "25" required autofocus>
+		<input type = "text" name = "name" id = "name-input" class = "form-control" placeholder = "Digite aqui..." title = "Digite seu nome" value = "<?php if(isset($_SESSION['register_name'])) echo $_SESSION['register_name'] ?>" maxlength = "25" required autofocus>
 
 		<div class = "text-right" >
 			
@@ -34,7 +34,7 @@
 
 	<!-- Email -->
 
-	<div class = "mb-3" >
+	<div class = "form-group" >
 		
 		<label for = "email-input" class = "form-label">
 
@@ -42,7 +42,7 @@
 
 		</label>
 
-		<input type = "email" name = "email" id = "email-input" class = "form-control" placeholder = "Digite aqui..." title = "Digite seu e-mail" value = "<?php if(isset($_SESSION['email-input'])) echo $_SESSION['email-input'] ?>" required>
+		<input type = "email" name = "email" id = "email-input" class = "form-control" placeholder = "Digite aqui..." title = "Digite seu e-mail" value = "<?php if(isset($_SESSION['register_email'])) echo $_SESSION['register_email'] ?>" required>
 
 		<div class = "text-right" >
 			
@@ -58,7 +58,7 @@
 
 	<!-- Senha -->
 
-	<div class = "mb-3" >
+	<div class = "form-group" >
 		
 		<label for = "password-input" class = "form-label" >
 			
@@ -66,7 +66,7 @@
 
 		</label>
 
-		<input type = "password" name = "password" id = "password-input" class = "form-control" placeholder = "Digite aqui..." title = "Digite sua senha" value = "<?php if(isset($_SESSION['password-input'])) echo $_SESSION['password-input'] ?>" required>
+		<input type = "password" name = "password" id = "password-input" class = "form-control" placeholder = "Digite aqui..." title = "Digite sua senha" value = "<?php if(isset($_SESSION['register_password'])) echo $_SESSION['register_password'] ?>" required>
 
 		<div class = "text-right" >
 			
@@ -82,7 +82,7 @@
 
 	<!-- Enviar -->
 
-	<div class = "row">
+	<div class = "row form-group">
 		
 		<div class = "text-left col-sm-8 mt-1 " >
 			
@@ -94,13 +94,13 @@
 						
 						if (!$_SESSION["register_validation"]["name"]) {
 							
-							echo "Nome inválido";
+							echo "Nome inválido" . "<br>";
 
 						}
 
 						if (!$_SESSION["register_validation"]["email"]) {
 							
-							echo "E-mail já cadastrado";
+							echo "E-mail já cadastrado" . "<br>";
 
 						}
 
@@ -118,7 +118,7 @@
 
 		</div>
 
-		<div class = "col-sm-4 text-right pr-0" >
+		<div class = "col-sm-4 text-right submit-button" >
 			
 			<button type = "submit" class = "btn btn-info">
 			

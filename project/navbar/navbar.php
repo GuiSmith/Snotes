@@ -2,7 +2,7 @@
 
 	<div class = "col-sm-1 text-left" >
 		
-		<img src = "media/logo.png" width = "45" class = "mt-1">
+		<img id = "navbar-logo" src = "media/logo.png" width = "45" onclick = "redirect()">
 
 	</div>
 
@@ -17,25 +17,25 @@
 						if ($objects[$i]->displayState) {
 
 							if ($objects[$i]->logged == "both") {
-								
-								echo "<li class = 'option' ><a href = '?page=" . $objects[$i]->pageCode .  "'>" . $objects[$i]->displayName . "</a></li>";
 
+								createItemLink($objects[$i]->pageCode,$objects[$i]->displayName);
+								
 							}
 							
-							if ($_SESSION["logged"]) {
+							if (isset($_SESSION["logged"]) && $_SESSION["logged"]) {
 								
 								if ($objects[$i]->logged == "yes") {
-									
-									echo "<li class = 'option' ><a href = '?page=" . $objects[$i]->pageCode .  "'>" . $objects[$i]->displayName . "</a></li>";
 
+									createItemLink($objects[$i]->pageCode,$objects[$i]->displayName);
+									
 								}
 
 							}else{
 
 								if ($objects[$i]->logged == "no") {
-									
-									echo "<li class = 'option' ><a href = '?page=" . $objects[$i]->pageCode .  "'>" . $objects[$i]->displayName . "</a></li>";
 
+									createItemLink($objects[$i]->pageCode,$objects[$i]->displayName);
+									
 								}
 
 							}	

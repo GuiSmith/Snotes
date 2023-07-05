@@ -5,13 +5,64 @@ body {
 }
 
 .box-content {
-
-	width: 35%;
-	padding: 20px;
-	margin: 3em auto;
+	
 	background: linear-gradient(to left, #ddd, #eee);
   box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
+
+}
+
+.box-page {
+
+	width: 35%;
+	padding: 10px;
+	margin: 3em auto;
+
+}
+
+.box-editor {
+
+	width: 65%;
+
+}
+
+.box-grid {
+
+	display: inline-block;
+	width: 300px;
+	padding: 5px;
+	word-spacing: normal;
+	overflow: hidden;
+	box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.1);
+
+}
+
+.link-button, .link-button:hover {
+
+	color: white;
+	text-decoration: none;
+
+}
+
+.submit-button {
+
+	padding: 0;
+/*	margin: 0.5rem 0;*/
+
+}
+
+.search-bar {
+
+	margin: 1em 0;
+
+
+}
+
+.search-dropdown, .search-input {
+
+	height: 2em;
+	outline: none;
+	margin: 0;
 
 }
 

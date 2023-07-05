@@ -1,8 +1,17 @@
-<form method = "POST" action = "password/new_password_validation.php?passcode=<?php echo $_GET["passcode"] ?>" class = "unlogged-form">
+<?php createHeader(
+
+	"Crie sua senha",
+	"Pense em uma nova senha!"
+
+	)
+
+?>
+
+<form method = "POST" action = "password/new_password_validation.php?passcode=<?php echo $_GET["passcode"] ?>" class = "box-content box-page">
 
 	<!-- Password -->
 	
-	<div class = "mb-3" >
+	<div class = "form-group" >
 		
 		<label for = "password-input" class = "form-label" >Senha</label>
 
@@ -22,7 +31,7 @@
 
 	<!-- Confirmation -->
 
-	<div class = "mb-3" >
+	<div class = "form-group" >
 		
 		<label for = "password-confirmation-input" class = "form-label" >Confirmação</label>
 
@@ -42,7 +51,7 @@
 
 	<!-- Send Button -->
 
-	<div class = "row ml-0 mr-0" >
+	<div class = "row form-group" >
 
 		<div class = "col-sm-8 text-left mt-1" style = "padding: 0" >
 			
@@ -78,7 +87,7 @@
 
 		</div>
 		
-		<div class = "col-sm-4 text-right" >
+		<div class = "col-sm-4 text-right submit-button" >
 			
 			<button type = "submit" class = "btn btn-info" >
 				

@@ -2,41 +2,40 @@
 
 	unset($_SESSION["password_sent"]);
 
+	createHeader(
+
+	"Entre em sua conta",
+	"Faça login para visualizar histórias e anotações privadas!"
+
+	);
+
 ?>
 
-<header class = "text-center mt-4" >
-
-	<h3>Entre em sua conta</h3>
-	 
-	<h5>Faça login para visualizar histórias e anotações privadas!</h5>
-
-</header>
-
-<form method = "POST" action = "login/login_validation.php" class = "box-content" >
+<form method = "POST" action = "login/login_validation.php?redirect=<?php if (isset($_GET["redirect"])) echo $_GET["redirect"] ?>" class = "box-content box-page" >
 			
 	<!-- E-mail -->
 
-	<div class = "mb-3" >
+	<div class = "form-group" >
 		
 		<label for = "email-input" class = "form-label" >E-mail</label>
 
-		<input type = "email" name = "email" id = "email-input" class = "form-control" placeholder = "Digite aqui..." title = "Digite seu e-mail" value = "<?php if(isset($_SESSION["email-input"])) echo $_SESSION["email-input"] ?>" required autofocus >
+		<input type = "email" name = "email" id = "email-input" class = "form-control" placeholder = "Digite aqui..." title = "Digite seu e-mail" value = "<?php if(isset($_SESSION["login_email"])) echo $_SESSION["login_email"] ?>" required autofocus >
 
 	</div>
 
 	<!-- Password -->
 
-	<div class = "mb-3" >
+	<div class = "form-group" >
 		
 		<label for = "password-input" class = "form-label" >Senha</label>
 
-		<input type = "password" name = "password" id = "password-input" class = "form-control" placeholder = "Digite aqui..." title = "Digite sua senha" value = "<?php if(isset($_SESSION["password-input"])) echo $_SESSION["password-input"] ?>" required>
+		<input type = "password" name = "password" id = "password-input" class = "form-control" placeholder = "Digite aqui..." title = "Digite sua senha" value = "<?php if(isset($_SESSION["login_password"])) echo $_SESSION["login_password"] ?>" required>
 
 		<div class = "text-right" >
 		
 			<small>
 				
-				<a href = "?page=16119192315184" class = "text-danger" >Esqueceu sua senha?</a>
+				<a href = "?page=<?php echo $password->pageCode ?>" class = "text-danger" >Esqueceu sua senha?</a>
 
 			</small>
 
@@ -46,7 +45,7 @@
 
 	<!-- Send -->
 
-	<div class = "row" >
+	<div class = "row form-group" >
 		
 		<div class = "col-sm-8 text-left mt-1">
 			
@@ -76,7 +75,7 @@
 
 		</div>
 
-		<div class = "col-sm-4 text-right pr-0" >
+		<div class = "col-sm-4 text-right submit-button" >
 			
 			<button type = "submit" class = "btn btn-info" >
 				

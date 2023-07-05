@@ -5,6 +5,13 @@
 
 }
 
+#navbar-logo {
+
+	margin: 0.2em 0;
+	cursor: pointer;
+
+}
+
 .options, .back-button {
 
 	list-style-type: none;

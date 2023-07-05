@@ -4,6 +4,8 @@
 
 	require "../../connection.php";
 
+	require "../sources.php";
+
 	if ($_SERVER["REQUEST_METHOD"] === "POST") {
 		
 		//Inputs
@@ -24,6 +26,10 @@
 
 		$result = mysqli_query($conn, $sql);
 
+		//Validation
+
+		//Email
+
 		if (mysqli_num_rows($result) == 1) {
 
 			//Correct e-mail
@@ -36,35 +42,13 @@
 				
 				//Correct password
 
-				unset($_SESSION["login_validation"]); //Unsetting the validation variable
-
-				$_SESSION["logged"] = true; //User is logged
-
-				//Updating login date
-
-				$login_sql = "UPDATE users SET logged_at = CURRENT_TIMESTAMP WHERE email = '$email'";
-
-				$login_result = mysqli_query($conn, $login_sql);
-
-				//Getting user's data
-
-				$user_sql = "SELECT * FROM users WHERE email = '$email'";
-
-				$user_result = mysqli_query($conn, $user_sql);
-
-				$_SESSION["user"] = mysqli_fetch_assoc($user_result);
-
-				header("Location: ../main.php?page=151897914");
+				$_SESSION["login_validation"]["password"] = true;
 
 			}else{
 
 				//Incorrect password
 
-				$_SESSION["email-input"] = $email;
-				$_SESSION["password-input"] = $password;
 				$_SESSION["login_validation"]["password"] = false;
-
-				header("Location: ../main.php?page=12157914");
 
 			}
 
@@ -72,12 +56,57 @@
 
 			//Incorrect e-mail
 
-			$_SESSION["email-input"] = $email;
-			$_SESSION["password-input"] = $password;
 			$_SESSION["login_validation"]["email"] = false;
-			$_SESSION["login_validation"]["password"] = true;
 
-			header("Location: ../main.php?page=12157914");
+		}
+
+		//If both e-mail and password are right
+
+		if ($_SESSION["login_validation"]["email"] && $_SESSION["login_validation"]["password"]) {
+			
+			unset($_SESSION["login_validation"]); //Unsetting the validation variable
+
+			$_SESSION["logged"] = true; //User is logged
+
+			//Updating login date
+
+			$login_sql = "UPDATE users SET logged_at = CURRENT_TIMESTAMP WHERE email = '$email'";
+
+			$login_result = mysqli_query($conn, $login_sql);
+
+			//Getting user's data
+
+			$user_sql = "SELECT * FROM users WHERE email = '$email'";
+
+			$user_result = mysqli_query($conn, $user_sql);
+
+			$_SESSION["user"] = mysqli_fetch_assoc($user_result);
+
+			unset($_SESSION["login_email"]);
+			unset($_SESSION["login_password"]);
+
+			if (isset($_GET["redirect"])) {
+
+				echo "redirect!";
+				
+				header("Location: ../main.php?page=" . $_GET["redirect"]);
+
+			}else{
+
+				echo "not set";
+
+				header("Location: ../main.php?page=" . $profile->pageCode);
+
+			}
+
+			
+
+		}else{
+
+			$_SESSION["login_email"] = $email;
+			$_SESSION["login_password"] = $password;
+
+			header("Location: ../main.php?page=" . $login->pageCode);
 
 		}
 

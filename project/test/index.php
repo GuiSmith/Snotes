@@ -1,23 +1,14 @@
 <?php
 
-	require "../../connection.php";
+    require "../../connection.php";
 
-	$name = "Guilherme";
-	$nickname = "Tec";
-	$id = 14;
+    $sql = "SELECT * FROM notes WHERE id = 1";
 
-	$update_sql = "UPDATE users SET name = '$name', nickname = '$nickname' WHERE ID = '$id'";
+    $result = mysqli_query($conn, $sql);
 
-	$update_result = mysqli_query($conn, $update_sql);
+    $row = mysqli_fetch_assoc($result);
 
-	if ($update_result) {
-		
-		echo "ok";
-
-	}else{
-
-		echo "not ok";
-
-	}
+    echo $row["title"] . "<br>";
+    echo $row["text"];
 
 ?>

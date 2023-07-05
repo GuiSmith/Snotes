@@ -1,8 +1,21 @@
-<form id = "form" method = "POST" action = "password/password_validation.php" class = "unlogged-form">
+<div id = "form-header" >
+	
+	<?php createHeader(
+
+		"Digite seu e-mail",
+		"Verifique seu e-mail e atualize sua senha!"
+
+		)
+
+	?>
+
+</div>
+
+<form id = "form" method = "POST" action = "password/password_validation.php" class = "box-content box-page">
 			
 	<!-- E-mail -->
 
-	<div class = "mb-3" >
+	<div class = "form-group" >
 		
 		<label for = "email-input" class = "form-label" >E-mail</label>
 
@@ -12,7 +25,7 @@
 
 	<!-- Send Button -->
 
-	<div class = "row" >
+	<div class = "row form-group" >
 
 		<div class = "col-sm-8 text-left mt-1" style = "padding: 0" >
 			
@@ -36,7 +49,7 @@
 
 		</div>
 		
-		<div class = "col-sm-4 text-right pr-0" >
+		<div class = "col-sm-4 text-right submit-button" >
 			
 			<button type = "submit" class = "btn btn-info" >
 				
@@ -50,32 +63,24 @@
 
 </form>
 
-<div id = "message" class = "text-center unlogged-form" >
+<div id = "sent-header" >
+	
+	<?php createHeader(
 
-	<h3>E-mail enviado!</h3>
+		"E-mail enviado!",
+		"Verifique seu e-mail e atualize sua senha!"
 
-	<p>
-		
-		Verifique o link em seu e-mail!
+		)
 
-	</p>
-
-	<div class = "text-center" >
-		
-		<button class = "btn btn-info" >
-			
-			<a href = "?page=12157914" style = "text-decoration: none;color: white;">Voltar</a>
-
-		</button>
-
-	</div>
+	?>
 
 </div>
 
 <script>
 	
+	const formHeader = document.getElementById("form-header");
 	const form = document.getElementById("form");
-	const message = document.getElementById("message");
+	const sentHeader = document.getElementById("sent-header");
 
 	if (
 
@@ -95,15 +100,19 @@
 
 	) {
 
+		formHeader.style.display = "none";
+
 		form.style.display = "none";
 
-		message.style.display = "block";
+		sentHeader.style.display = "block";
 
 	}else{
 
+		formHeader.style.display = "block";
+
 		form.style.display = "block";
 
-		message.style.display = "none";
+		sentHeader.style.display = "none";
 
 	}
 

@@ -41,7 +41,7 @@
 				unset($_SESSION["password-input"]);
 				unset($_SESSION["password-confirmation-input"]);
 
-				header("Location: ../main.php?page=12157914");
+				header("Location: ../main.php?page=" . $login->pageCode);
 
 			}else{
 

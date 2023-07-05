@@ -6,6 +6,6 @@
 
 	unset($_SESSION["user"]);
 
-	header("Location: main.php?page=12157914");
+	header("Location: main.php?page=" . $login->pageCode);
 
 ?> 

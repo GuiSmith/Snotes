@@ -94,16 +94,14 @@
 			unset($_SESSION["update_name"]);
 			unset($_SESSION["update_nickname"]);
 
-			header("Location: ../main.php?page=19181569125");
-
 		}else{
 
 			$_SESSION["update_name"] = $name;
 			$_SESSION["update_nickname"] = $nickname;
 
-			header("Location: ../main.php?page=19181569125");
-
 		}
+
+		header("Location: ../main.php?page=" . $profile->pageCode);
 
 	}
 

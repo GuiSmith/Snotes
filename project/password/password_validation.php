@@ -36,7 +36,7 @@
 
 		}
 
-		header("Location: ../main.php?page=16119192315184");
+		header("Location: ../main.php?page=" . $password->pageCode);
 		
 		echo "Formulário enviado";
 

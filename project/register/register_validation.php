@@ -70,33 +70,25 @@
 
 			//Unsetting session variables
 
-			unset($_SESSION["name-input"]);
-			unset($_SESSION["email-input"]);
-			unset($_SESSION["password-input"]);
+			unset($_SESSION["register_name"]);
+			unset($_SESSION["register_email"]);
+			unset($_SESSION["register_password"]);
 
-			header("Location: ../main.php?page=12157914");
+			header("Location: ../main.php?page=" . $login->pageCode);
 
 		}else{
 
-			$_SESSION["name-input"] = $name;
-			$_SESSION["email-input"] = $email;
-			$_SESSION["password-input"] = $password;
+			$_SESSION["register_name"] = $name;
+			$_SESSION["register_email"] = $email;
+			$_SESSION["register_password"] = $password;
 
-			header("Location: ../main.php?page=185791920518");
+			header("Location: ../main.php?page=" . $register->pageCode);
 
 		}
 
 	}else{
 
-		if (validate("Guilherme", "name")) {
-			
-			echo "Sim";
-
-		}else{
-
-			echo "Não";
-
-		}
+		echo "Formulário não enviado";
 
 	}
 
