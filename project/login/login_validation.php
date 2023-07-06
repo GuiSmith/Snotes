@@ -106,7 +106,15 @@
 			$_SESSION["login_email"] = $email;
 			$_SESSION["login_password"] = $password;
 
-			header("Location: ../main.php?page=" . $login->pageCode);
+			if (isset($_SESSION["redirect"])){
+
+				header("Location: main.php?page=" . $login->pageCode . "&redirect=" . $_GET["redirect"]);
+
+			}else{
+
+				header("Location: ../main.php?page=" . $login->pageCode);
+
+			}
 
 		}
 
