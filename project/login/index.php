@@ -11,7 +11,7 @@
 
 ?>
 
-<form method = "POST" action = "login/login_validation.php?redirect=<?php if (isset($_GET["redirect"])) echo $_GET["redirect"] ?>" class = "box-content box-page" >
+<form method = "POST" action = "login/login_validation.php?redirect=<?php if (isset($_GET["redirect"])) echo $_GET["redirect"] ?>" class = "box-content box-form box-center" >
 			
 	<!-- E-mail -->
 

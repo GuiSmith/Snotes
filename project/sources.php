@@ -31,7 +31,7 @@
 
   }
 
-  $new_note = new Option("new_note", "Criar anotação", "yes", 145231415205, false);
+  $note = new Option("note", "Criar anotação", "yes", 145231415205, false);
   $origin = new Option("origin", "Origem", "both", 151897914, true);
   $home = new Option("home", "Snotes", "both", 815135, true);
   $stories = new Option("stories", "Histórias", "both", 192015189519, true);

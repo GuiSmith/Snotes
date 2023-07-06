@@ -13,3 +13,9 @@ Ninth, it will ask for your username (GuiSmith) and your access token
 Tenth, check the github repository for changes
 
 If you forgot your access token or how to create it, just go to settings, developers tool, access token, create one;
+
+  EXPORTING SQL: mysqldump -u root -p notes > notes.sql
+  REMEMBER TO CD /VAR/WWW/HTML
+
+  IMPORTING SQL: mysql -u root -p notes < notes.sql
+  REMEMBER TO CD /VAR/WWW/HTML

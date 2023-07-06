@@ -4,6 +4,8 @@
 
 	require "../../connection.php";
 
+	require "../sources.php";
+
 	if ($_SERVER['REQUEST_METHOD'] == "POST") {
 		
 		$note_title = $_POST["note_title"];
@@ -16,7 +18,7 @@
 
 		if ($result) {
 			
-			echo "ok";
+			header("Location: ../main.php?page=" . $notes->pageCode);
 
 		}else{
 

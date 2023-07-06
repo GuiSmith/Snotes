@@ -31,7 +31,7 @@
 		<link rel="stylesheet" type="text/css" href = "index.css">
 
 		<!-- Selected Page -->
-		<!-- <link id = "page-style" rel="stylesheet" type="text/css" > -->
+		<link id = "page-style" rel="stylesheet" type="text/css" >
 
 		<!-- Favicon -->
 		<link rel="icon" type="image/x-icon" href = "media/logo.png">
@@ -113,6 +113,14 @@
 			document.title = "<?php echo $page_title ?>";
 
 			console.log(document.title);
+
+			//Page Style
+
+			page_style = document.getElementById("page-style");
+
+			page_style.href = "<?php echo $page_style ?>/index.css";
+
+			console.log(page_style.style.src);
 
 			//Redirect
 

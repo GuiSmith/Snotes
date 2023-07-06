@@ -9,7 +9,7 @@
 
 ?>
 
-<form action = "new_note/new_note_validation.php" method = "POST"  class = "box-content box-page box-editor" autocomplete = "off" >
+<form action = "note/new_note_validation.php" method = "POST"  class = "box-content box-form box-editor box-center" autocomplete = "off" >
 	
 	<div class = "form-group" >
 		

@@ -8,7 +8,7 @@
 
 </header>
 
-<form method = "POST" action = "profile/update_validation.php" class = "box-content box-page">
+<form method = "POST" action = "profile/update_validation.php" class = "box-content box-center box-form">
 			
 	<!-- Name -->
 

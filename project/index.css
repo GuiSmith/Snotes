@@ -1,8 +1,12 @@
+/*Background Page*/
+
 body {
 
 	background: linear-gradient(to right, #ccc, #eee);
 
 }
+
+/*Shadow box*/
 
 .box-content {
 	
@@ -12,19 +16,40 @@ body {
 
 }
 
-.box-page {
+/*Main centered content*/
+
+.box-center {
+
+	margin: 2rem auto;
+
+}
+
+/*General centered content*/
+
+.block-center {
+
+	margin: 1rem auto;
+
+}
+
+/*Forms like login, register, profile, new note/story, etc.*/
+
+.box-form {
 
 	width: 35%;
 	padding: 10px;
-	margin: 3em auto;
 
 }
+
+/*Specific width for new note/story, etc.*/
 
 .box-editor {
 
 	width: 65%;
 
 }
+
+/*Story block*/
 
 .box-grid {
 
@@ -37,6 +62,8 @@ body {
 
 }
 
+/*Link buttons*/
+
 .link-button, .link-button:hover {
 
 	color: white;
@@ -44,25 +71,47 @@ body {
 
 }
 
+/*For when button is a column of a row content*/
+
 .submit-button {
 
 	padding: 0;
-/*	margin: 0.5rem 0;*/
 
 }
+
+.search-form {
+
+/*	border: solid 1px black;*/
+	display: inline-block;
+	height: 25px;
+	padding: 0;
+	word-spacing: none;
+
+}
+
+/*Search bar container*/
 
 .search-bar {
 
-	margin: 1em 0;
-
+	width: 30%;
+	padding: 5px;
 
 }
 
-.search-dropdown, .search-input {
+.search-bar-item {
 
-	height: 2em;
+	height: 100%;
 	outline: none;
-	margin: 0;
+	border: none;
+	background-color: white;
+
+}
+
+/*search form*/
+
+.search-form {
+
+	word-spacing: 0;
 
 }
 

@@ -7,96 +7,88 @@
 
 ?>
 
-<div class = "box-content box-page text-center " >
+<div class = "box-content box-center text-center search-bar" >
 
-	<div class = "text-center" >
-
-		<?php createLinkButton("Novo", "?page=" . $new_note->pageCode); ?>
-		<?php createLinkButton("Grupo", "?page=home"); ?>
-		<?php createLinkButton("Excluir", "?page=home"); ?>
+	<div class = "block-center" >
+		
+		<?php createLinkButton("Novo", "?page=" . $note->pageCode) ?>
+		<?php createLinkButton("Excluir", "?page=" . $note->pageCode) ?>
 
 	</div>
-	
-	<form class = "search-bar" >
 
-		<select class = "search-dropdown" >
-		  <option value="option1" selected>Título</option>
-		  <option value="option2">Sinopse</option>
-		  <option value="option3">Texto</option>
-		  <option value="option4">Grupo</option>
-		</select>
-		
-		<input class = "search-input" type = "text" name = "search" placeholder = "Pesquise aqui..." title = "Pesquise uma anotação">
+	<form class = "search-form block-center" >
+			
+		<select class = "search-dropdown search-bar-item" >
+			
+			<option selected>Título</option>
+			<option>Texto</option>
+
+		</select><input class = "search-bar-item" type = "text" name = "search" placeholder = "Pesquise aqui..." title = "Pesquisa uma anotação"><button type = "submit" class = "search-bar-item">
+
+			<img src = "media/search.png" width="20" >
+
+		</button>
 
 	</form>
 
 </div>
 
-<section class = "m-4" style = "word-spacing: 10px;" >
-
-	<div class = "box-grid box-content" >
+<table>
+	
+	<th>
 		
-		<h3 class = "text-center" >Título do texto</h3>
+		ID
 
-		<p class = "text-indent text-justify" style = "text-indent: 20px; padding: 0 10px" >Curabitur pulvinar nunc at nulla ornare, et facilisis ipsum maximus. Vestibulum vel tortor et leo aliquam pellentesque eget aliquam risus</p>
+	</th>
 
-		<div class = "row" >
-			
-			<div class = "col-sm-6 text-left" >
-
-				<p>
-					
-					Público
-
-				</p>
-				
-			</div>
-
-			<div class = "col-sm-6 text-right " >
-				
-				<p>
-					
-					03/07 17:24
-					
-				</p>
-
-			</div>
-
-		</div>
-
-	</div>
-
-
-	<div class = "box-grid box-content" >
+	<th>
 		
-		<h3 class = "text-center" >Título do texto</h3>
+		Título
 
-		<p class = "text-indent text-justify" style = "text-indent: 20px; padding: 0 10px" >Curabitur pulvinar nunc at nulla ornare, et facilisis ipsum maximus. Vestibulum vel tortor et leo aliquam pellentesque eget aliquam risus</p>
+	</th>
 
-		<div class = "row" >
+	<th>
+		
+		Autor
+
+	</th>
+
+	<th>
+		
+		Visível
+
+	</th>
+
+</table>
+
+<?php
+
+	$notes_sql = "SELECT * FROM notes";
+
+	$notes_result = mysqli_query($conn, $notes_sql);
+
+	echo "<table>";
+
+	while ($row = mysqli_fetch_assoc($notes_result)){
+
+		echo "<tr>";
+
+		foreach ($row as $column => $value) {
 			
-			<div class = "col-sm-6 text-left" >
-
-				<p>
-					
-					Público
-
-				</p>
+			if ($column != "text") {
 				
-			</div>
+				echo "<td>";
+				echo $value;
+				echo "</td>";
 
-			<div class = "col-sm-6 text-right " >
-				
-				<p>
-					
-					03/07 17:24
-					
-				</p>
+			}
 
-			</div>
+		}
 
-		</div>
+		echo "</tr>";
+	
+	}
 
-	</div>
+	echo "</table>";
 
-</section>
+?>

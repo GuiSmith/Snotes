@@ -11,7 +11,7 @@
 
 </div>
 
-<form id = "form" method = "POST" action = "password/password_validation.php" class = "box-content box-page">
+<form id = "form" method = "POST" action = "password/password_validation.php" class = "box-content box-form box-center">
 			
 	<!-- E-mail -->
 

@@ -7,7 +7,7 @@
 
 ?>
 
-<form method = "POST" action = "password/new_password_validation.php?passcode=<?php echo $_GET["passcode"] ?>" class = "box-content box-page">
+<form method = "POST" action = "password/new_password_validation.php?passcode=<?php echo $_GET["passcode"] ?>" class = "box-content box-form box-center">
 
 	<!-- Password -->
 	

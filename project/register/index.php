@@ -6,7 +6,7 @@
 
 </header>
 
-<form method = "POST" action = "register/register_validation.php" class = "box-content box-page">
+<form method = "POST" action = "register/register_validation.php" class = "box-content box-form box-center">
 			
 	<!-- Name -->
 
