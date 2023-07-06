@@ -103,7 +103,7 @@
 			if (isset($_GET["redirect"])) {
 				
 				header("Location: ../main.php?page=" . $login->pageCode . "&redirect=" . $_GET["redirect"]);
-
+			
 			}else{
 
 				header("Location: ../main.php?page=" . $login->pageCode);
