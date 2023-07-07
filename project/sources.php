@@ -36,7 +36,7 @@
   $home = new Option("home", "Snotes", "both", 815135, true);
   $stories = new Option("stories", "Histórias", "both", 192015189519, true);
   $users = new Option("users", "Usuários", "yes", 211951819, true);
-  $notes = new Option("notes", "Anotações", "both", 141520519, true);
+  $notes = new Option("notes", "Anotações", "yes", 141520519, true);
   $password = new Option("password", "Trocar Senha", "no", 16119192315184, false);
   $profile = new Option("profile", "Perfil", "yes", 16181569125, true);
   $register = new Option("register", "Registrar", "no", 185791920518, true);

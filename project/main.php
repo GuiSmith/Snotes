@@ -48,43 +48,49 @@
 			
 			<?php
 
-				if (isset($_GET["page"])) {
+				switch (true) {
 
-					for ($i=0; $i < count($objects); $i++) {
+					// Page
+					
+					case (isset($_GET["page"])):
 						
-						if ($_GET["page"] == $objects[$i]->pageCode) {
+						for ($i=0; $i < count($objects); $i++) {
+						
+							if ($_GET["page"] == $objects[$i]->pageCode) {
 
-							if ($objects[$i]->logged == "yes" && (!$_SESSION["logged"] || !isset($_SESSION["logged"]))) {
-								
-								header("Location: main.php?page=" . $login->pageCode . "&redirect=" . $objects[$i]->pageCode);
-
-							}else{
-
-								if ($objects[$i]->logged == "no" && (isset($_SESSION['logged']) && $_SESSION['logged'])) {
+								if ($objects[$i]->logged == "yes" && (!$_SESSION["logged"] || !isset($_SESSION["logged"]))) {
 									
-									header("Location: main.php?page=" . $home->pageCode);
+									header("Location: main.php?page=" . $login->pageCode . "&redirect=" . $objects[$i]->pageCode);
 
 								}else{
 
-									require $objects[$i]->fileName . "/index.php";
+									if ($objects[$i]->logged == "no" && (isset($_SESSION['logged']) && $_SESSION['logged'])) {
+										
+										header("Location: main.php?page=" . $origin->pageCode);
 
-									$page_style = $objects[$i]->fileName;
+									}else{
 
-									$page_title = $objects[$i]->displayName;
+										require $objects[$i]->fileName . "/index.php";
+
+										$page_style = $objects[$i]->fileName;
+
+										$page_title = $objects[$i]->displayName;
+
+									}
 
 								}
+								
+								break;
 
 							}
-							
-							break;
 
 						}
 
-					}
-					
-				}else{
+						break;
 
-					if (isset($_GET["passcode"])) {
+					// Passcode
+
+					case (isset($_GET["passcode"])):
 
 						$page_passcode = $_GET["passcode"];
 
@@ -97,10 +103,101 @@
 							require "password/new_password.php";
 
 						}
-						
-					}
 
+						break;
+
+					case (isset($_GET["note"])):
+					
+					// Note
+
+					case (isset($_GET["note"])):
+
+						if (!$_SESSION["logged"]) {
+							
+							header("Location: main.php?page=" . $login->pageCode);
+
+						}else{
+
+							$note_id = $_GET["note"];
+
+							$note_sql = "SELECT text FROM notes WHERE id = '$note_id'";
+
+							$note_result = mysqli_query($conn, $note_sql);
+
+							if (mysqli_num_rows($note_result) == 1) {
+								
+								$note = mysqli_fetch_assoc($note_result);
+
+								echo "<div class = 'box-center box-content box-editor' >";
+
+								echo $note["text"];
+
+								echo "</div>";
+
+							}
+
+						}
+
+					break;
+
+					default:
+						// code...
+						break;
 				}
+
+				// if (isset($_GET["page"])) {
+
+				// 	for ($i=0; $i < count($objects); $i++) {
+						
+				// 		if ($_GET["page"] == $objects[$i]->pageCode) {
+
+				// 			if ($objects[$i]->logged == "yes" && (!$_SESSION["logged"] || !isset($_SESSION["logged"]))) {
+								
+				// 				header("Location: main.php?page=" . $login->pageCode . "&redirect=" . $objects[$i]->pageCode);
+
+				// 			}else{
+
+				// 				if ($objects[$i]->logged == "no" && (isset($_SESSION['logged']) && $_SESSION['logged'])) {
+									
+				// 					header("Location: main.php?page=" . $home->pageCode);
+
+				// 				}else{
+
+				// 					require $objects[$i]->fileName . "/index.php";
+
+				// 					$page_style = $objects[$i]->fileName;
+
+				// 					$page_title = $objects[$i]->displayName;
+
+				// 				}
+
+				// 			}
+							
+				// 			break;
+
+				// 		}
+
+				// 	}
+					
+				// }else{
+
+				// 	if (isset($_GET["passcode"])) {
+
+				// 		$page_passcode = $_GET["passcode"];
+
+				// 		$page_passcode_sql = "SELECT passcode FROM users WHERE passcode = '$page_passcode'";
+
+				// 		$page_passcode_result = mysqli_query($conn, $page_passcode_sql);
+
+				// 		if (mysqli_num_rows($page_passcode_result) > 0) {
+							
+				// 			require "password/new_password.php";
+
+				// 		}
+						
+				// 	}
+
+				// }
 
 			?>
 

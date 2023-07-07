@@ -12,7 +12,6 @@
 	<div class = "block-center" >
 		
 		<?php createLinkButton("Novo", "?page=" . $note->pageCode) ?>
-		<?php createLinkButton("Excluir", "?page=" . $note->pageCode) ?>
 
 	</div>
 
@@ -33,7 +32,11 @@
 
 </div>
 
-<table>
+<!-- Notes -->
+
+<table class = "box-content box-center" style = "width: 30%;" >
+
+	<!-- ID -->
 	
 	<th>
 		
@@ -41,11 +44,15 @@
 
 	</th>
 
+	<!-- Title -->
+
 	<th>
 		
 		Título
 
 	</th>
+
+	<!-- Author -->
 
 	<th>
 		
@@ -53,42 +60,111 @@
 
 	</th>
 
-	<th>
-		
-		Visível
+	<?php
 
-	</th>
+		$note_id = "";
 
-</table>
+		$notes_sql = "SELECT * FROM notes";
 
-<?php
+		$notes_result = mysqli_query($conn, $notes_sql);
 
-	$notes_sql = "SELECT * FROM notes";
+		while ($row = mysqli_fetch_assoc($notes_result)){
 
-	$notes_result = mysqli_query($conn, $notes_sql);
+			foreach ($row as $column => $value) {
 
-	echo "<table>";
+				//HTML & CSS
 
-	while ($row = mysqli_fetch_assoc($notes_result)){
+				if ($row["active"] && isset($_SESSION["user"]) && $row["user_id"] == $_SESSION["user"]["id"]) {
+					
+					if ($column != "text") {
 
-		echo "<tr>";
+						if ($column == "id") {
+							
+							echo "<tr onclick = 'seeNote(" . $value . ")' >";
 
-		foreach ($row as $column => $value) {
-			
-			if ($column != "text") {
-				
-				echo "<td>";
-				echo $value;
-				echo "</td>";
+						}
+						
+						if ($column == "title") {
+
+							echo "<td class = 'text-left' >";
+
+						}else{
+
+							echo "<td class = 'text-center' >";
+
+						}
+
+						//Value
+
+						switch ($column) {
+
+							case "id":
+
+								echo $value;
+
+								$note_id = $value;
+
+								break;
+							
+							case 'user_id':
+
+								$user_sql = "SELECT name FROM users WHERE id = $value";
+
+								$user_result = mysqli_query($conn, $user_sql);
+
+								$user_row = mysqli_fetch_assoc($user_result);
+
+								if (mysqli_num_rows($user_result) == 1) {
+									
+									echo $user_row["name"];
+
+								}else{
+
+									echo "user error";
+
+								}
+								
+								break;
+
+							case "active":
+
+
+
+							break;
+							
+							default:
+								
+								echo $value;
+
+								break;
+
+						}
+
+						echo "</td>";
+
+					}
+
+				}
 
 			}
 
+			echo "</tr>";
+			echo "</a>";
+		
 		}
 
-		echo "</tr>";
+	?>
+
+</table>
+
+<script>
 	
+	function seeNote(id){
+
+		window.location.href = "?note=" + id;
+
+		console.log(id);
+
 	}
 
-	echo "</table>";
-
-?>
+</script>

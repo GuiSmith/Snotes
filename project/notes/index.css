@@ -1,5 +1,21 @@
-table {
+tr:hover {
 
-	border: solid 1px black;
+	background-color: grey;
 
 }
+
+.note-link:hover {
+
+	
+	color: white;
+
+}
+
+th, td {
+
+	padding: 1rem;
+	user-select: none;
+	cursor: pointer;
+
+}
+
