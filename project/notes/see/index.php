@@ -56,13 +56,43 @@
 
 	<div class = "row" >
 		
-		<div class = "col-sm-6 text-left" >
+		<div class = "col-sm-4 text-left" >
 			
 			<button type = "submit" name = "operation" value = "delete" class = "btn btn-danger">Excluir</button>
 
 		</div>
 
-		<div class = "col-sm-6 text-right" >
+		<div class = "col-sm-4 text-center" >
+			
+			<h3 class = "see-visibility" >
+					
+				<?php
+
+					switch ($note["visibility"]) {
+						
+						case "personal":
+							
+							echo "Ṕessoal";
+							break;
+
+						case "private":
+
+							echo "Privado";
+							break;
+						
+						default:
+							
+							echo "visibility error";
+							break;
+					}
+
+				?>
+
+			</h3>
+
+		</div>
+
+		<div class = "col-sm-4 text-right" >
 			
 			<button type = "submit" name = "submit" class = "btn btn-info" >Editar</button>
 

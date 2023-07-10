@@ -36,7 +36,7 @@
 
 <?php
 
-	$notes_sql = "SELECT * FROM notes";
+	$notes_sql = "SELECT * FROM notes WHERE active = true";
 
 	$notes_result = mysqli_query($conn, $notes_sql);
 
@@ -71,59 +71,55 @@
 
 			while ($row = mysqli_fetch_assoc($notes_result)) {
 
-				if ($row["active"]) {
+				//Author name
+
+				$current_user = $_SESSION["user"]["id"];
+
+				$author_sql = "SELECT name FROM users WHERE id = '$current_user' ";
+
+				$author_result = mysqli_query($conn, $author_sql);
+
+				$row_author = mysqli_fetch_assoc($author_result);
+
+				//Visibility
+
+				$visibility;
+
+				switch ($row["visibility"]) {
 					
-					//Author name
-
-					$current_user = $_SESSION["user"]["id"];
-
-					$author_sql = "SELECT name FROM users WHERE id = '$current_user' ";
-
-					$author_result = mysqli_query($conn, $author_sql);
-
-					$row_author = mysqli_fetch_assoc($author_result);
-
-					//Visibility
-
-					$visibility;
-
-					switch ($row["visibility"]) {
+					case "personal":
 						
-						case "personal":
-							
-							$visibility = "Pessoal";
+						$visibility = "Pessoal";
 
-							break;
+						break;
 
-						case "private":
+					case "private":
 
-							$visibility = "Privado";
+						$visibility = "Privado";
 
-							break;
-						
-						default:
-							
-							$visibility = "public or error";
-
-							break;
-					}
+						break;
 					
-					$table_line = [
+					default:
+						
+						$visibility = "public or error";
 
-						$row["id"],
-						date("d/m/Y H:i:s", strtotime($row["created_at"])),
-						$row["title"],
-						$row_author["name"],
-						($row["updated_at"] != "") ? (date("d/m/Y H:i:s", strtotime($row["updated_at"]))) : (""),
-						$visibility
-
-					];
-
-					echo "<tr onclick = 'seeNote(" . $row["id"] . ")' >";
-					createTLine($table_line, array_search("Título", $table_header));
-					echo "</tr>";
-
+						break;
 				}
+				
+				$table_line = [
+
+					$row["id"],
+					date("d/m/Y H:i:s", strtotime($row["created_at"])),
+					$row["title"],
+					$row_author["name"],
+					($row["updated_at"] != "") ? (date("d/m/Y H:i:s", strtotime($row["updated_at"]))) : (""),
+					$visibility
+
+				];
+
+				echo "<tr onclick = 'seeNote(" . $row["id"] . ")' >";
+				createTLine($table_line, array_search("Título", $table_header));
+				echo "</tr>";
 
 			}
 

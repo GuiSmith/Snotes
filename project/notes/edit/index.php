@@ -80,11 +80,41 @@
 
 	</div>
 
-	<!-- Enviar -->
+	<!-- Parâmetros & Enviar -->
 
-	<div class = "form-group text-right" >
+	<div class = "row form-group" >
 		
-		<button type = "submit" name = "submit" class = "btn btn-info">Enviar</button>
+		<!-- Parâmetros -->
+
+		<div class = "col-sm-8" >
+			
+			<span class = "box-visibility" >
+				
+				<input type = "radio" name = "visibility" id = "personal" value = "personal" checked>
+
+				<label for = "personal" >Pessoal</label>
+
+			</span>
+
+			<span class = "box-visibility" >
+				
+				<input type = "radio" name = "visibility" id = "private" value = "private" >
+
+				<label for = "private" >Privado</label>
+
+			</span>
+
+			<a href = "">O que são parâmetros de privacidade?</a>
+
+		</div>
+
+		<!-- Enviar -->
+
+		<div class = "col-sm-4 text-right" >
+			
+			<button type = "submit" name = "submit" class = "btn btn-info">Enviar</button>
+
+		</div>
 
 	</div>
 

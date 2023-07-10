@@ -125,8 +125,14 @@ div.row {
 
 }
 
-.row .col-sm-6 {
+.row > * {
 
 	padding: 0;
+
+}
+
+.see-visibility {
+
+	margin: 0.1em 0 0 0;
 
 }

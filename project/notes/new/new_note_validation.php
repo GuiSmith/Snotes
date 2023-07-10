@@ -10,6 +10,7 @@
 		
 		$note_title = $_POST["note_title"];
 		$note_text = $_POST["note_text"];
+		$note_visibility = $_POST["visibility"];
 		$user_id = $_SESSION["user"]["id"];
 
 		$encryption_key = random_bytes(16);
@@ -22,7 +23,7 @@
 
 		$store_encryption_IV = bin2hex($encryption_IV);
 
-		$sql = "INSERT INTO notes (title, text, user_id, encryption_key, encryption_IV) VALUES ('$note_title', '$encrypted_text', '$user_id', '$store_encryption_key', '$store_encryption_IV')";
+		$sql = "INSERT INTO notes (title, text, visibility, user_id, encryption_key, encryption_IV) VALUES ('$note_title', '$encrypted_text', '$note_visibility', '$user_id', '$store_encryption_key', '$store_encryption_IV')";
 
 		$result = mysqli_query($conn, $sql);
 

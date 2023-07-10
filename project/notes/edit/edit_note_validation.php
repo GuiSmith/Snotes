@@ -11,6 +11,7 @@
 		$note_id = $_POST["note_id"];
 		$note_title = $_POST["note_title"];
 		$note_text = $_POST["note_text"];
+		$note_visibility = $_POST["visibility"];
 
 		$note_sql = "SELECT encryption_key, encryption_IV FROM notes WHERE id = '$note_id'";
 		$note_result = mysqli_query($conn, $note_sql);
@@ -21,7 +22,7 @@
 
 		$encryptedText = openssl_encrypt($note_text, 'AES-256-CBC', $encryption_key, 0 ,$encryption_IV);
 
-		$update_sql = "UPDATE notes SET title = '$note_title', text = '$encryptedText' WHERE id = '$note_id'";
+		$update_sql = "UPDATE notes SET title = '$note_title', text = '$encryptedText', visibility = '$note_visibility' WHERE id = '$note_id'";
 
 		$update_result = mysqli_query($conn, $update_sql);
 
