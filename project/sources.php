@@ -31,17 +31,31 @@
 
   }
 
-  $note = new Option("note", "Criar anotação", "yes", 145231415205, false);
+  //Screens
+  
   $origin = new Option("origin", "Origem", "both", 151897914, true);
   $home = new Option("home", "Snotes", "both", 815135, true);
-  $stories = new Option("stories", "Histórias", "both", 192015189519, true);
-  $users = new Option("users", "Usuários", "yes", 211951819, true);
-  $notes = new Option("notes", "Anotações", "yes", 141520519, true);
   $password = new Option("password", "Trocar Senha", "no", 16119192315184, false);
+
+  //Stories
+
+  $stories = new Option("stories", "Histórias", "both", 192015189519, true);
+
+  //Notes
+
+  $notes = new Option("notes", "Anotações", "yes", 141520519, true);
+  $edit_note = new Option("notes/edit", "Editar Anotação", "yes", 141520554920, false);
+  $see_note = new Option("notes/see", "Anotação", "yes", 19551415205, false);
+  $new_note = new Option("notes/new", "Criar anotação", "yes", 145231415205, false);
+
+  //Options
+  $users = new Option("users", "Usuários", "yes", 211951819, true);
   $profile = new Option("profile", "Perfil", "yes", 16181569125, true);
   $register = new Option("register", "Registrar", "no", 185791920518, true);
   $login = new Option("login", "Entrar", "no", 12157914, true);
   $log_out = new Option("log_out", "Sair", "yes", 12157152120, true);
+
+  //Objects
 
   $objects = Option::getAllObjects();
 
@@ -118,6 +132,48 @@
     echo $text;
     echo "</a>";
     echo "</li>";
+
+  }
+
+  //Table Header Line creator
+
+  function createTHeader($array){
+
+    for ($i=0; $i < count($array); $i++) { 
+      
+      echo "<th>";
+      echo $array[$i];
+      echo "</th>";
+
+    }
+
+  }
+
+  //Table Line creator
+
+  function createTLine($array, $leftPosition = 1000){
+
+    for ($i=0; $i < count($array); $i++) { 
+      
+      echo "<td ";
+
+      if ($i == $leftPosition) {
+        
+        echo "class = 'text-left'";
+
+      }else{
+
+        echo "class = 'text-center'";
+
+      }
+
+      echo " >";
+
+      echo $array[$i];
+
+      echo "</td>";
+
+    }
 
   }
 

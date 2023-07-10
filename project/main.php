@@ -74,7 +74,11 @@
 
 										$page_style = $objects[$i]->fileName;
 
-										$page_title = $objects[$i]->displayName;
+										if (!isset($page_title)) {
+											
+											$page_title = $objects[$i]->displayName;
+											
+										}
 
 									}
 
@@ -105,40 +109,6 @@
 						}
 
 						break;
-
-					case (isset($_GET["note"])):
-					
-					// Note
-
-					case (isset($_GET["note"])):
-
-						if (!$_SESSION["logged"]) {
-							
-							header("Location: main.php?page=" . $login->pageCode);
-
-						}else{
-
-							$note_id = $_GET["note"];
-
-							$note_sql = "SELECT text FROM notes WHERE id = '$note_id'";
-
-							$note_result = mysqli_query($conn, $note_sql);
-
-							if (mysqli_num_rows($note_result) == 1) {
-								
-								$note = mysqli_fetch_assoc($note_result);
-
-								echo "<div class = 'box-center box-content box-editor' >";
-
-								echo $note["text"];
-
-								echo "</div>";
-
-							}
-
-						}
-
-					break;
 
 					default:
 						// code...

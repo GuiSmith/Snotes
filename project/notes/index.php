@@ -11,7 +11,7 @@
 
 	<div class = "block-center" >
 		
-		<?php createLinkButton("Novo", "?page=" . $note->pageCode) ?>
+		<?php createLinkButton("Novo", "?page=" . $new_note->pageCode) ?>
 
 	</div>
 
@@ -34,126 +34,102 @@
 
 <!-- Notes -->
 
-<table class = "box-content box-center" style = "width: 30%;" >
+<?php
 
-	<!-- ID -->
+	$notes_sql = "SELECT * FROM notes";
+
+	$notes_result = mysqli_query($conn, $notes_sql);
+
+?>
+
+<table class = "box-content box-center" >
 	
-	<th>
+	<thead>
 		
-		ID
+		<?php
 
-	</th>
+			$table_header = [
 
-	<!-- Title -->
+				"ID",
+				"Criação",
+				"Título",
+				"Autor",
+				"Alteração",
+				"Visibilidade"
 
-	<th>
+			];
+
+			createTHeader($table_header);
+
+		?>
+
+	</thead>
+
+	<tbody>
 		
-		Título
+		<?php
 
-	</th>
+			while ($row = mysqli_fetch_assoc($notes_result)) {
 
-	<!-- Author -->
-
-	<th>
-		
-		Autor
-
-	</th>
-
-	<?php
-
-		$note_id = "";
-
-		$notes_sql = "SELECT * FROM notes";
-
-		$notes_result = mysqli_query($conn, $notes_sql);
-
-		while ($row = mysqli_fetch_assoc($notes_result)){
-
-			foreach ($row as $column => $value) {
-
-				//HTML & CSS
-
-				if ($row["active"] && isset($_SESSION["user"]) && $row["user_id"] == $_SESSION["user"]["id"]) {
+				if ($row["active"]) {
 					
-					if ($column != "text") {
+					//Author name
 
-						if ($column == "id") {
-							
-							echo "<tr onclick = 'seeNote(" . $value . ")' >";
+					$current_user = $_SESSION["user"]["id"];
 
-						}
+					$author_sql = "SELECT name FROM users WHERE id = '$current_user' ";
+
+					$author_result = mysqli_query($conn, $author_sql);
+
+					$row_author = mysqli_fetch_assoc($author_result);
+
+					//Visibility
+
+					$visibility;
+
+					switch ($row["visibility"]) {
 						
-						if ($column == "title") {
-
-							echo "<td class = 'text-left' >";
-
-						}else{
-
-							echo "<td class = 'text-center' >";
-
-						}
-
-						//Value
-
-						switch ($column) {
-
-							case "id":
-
-								echo $value;
-
-								$note_id = $value;
-
-								break;
+						case "personal":
 							
-							case 'user_id':
-
-								$user_sql = "SELECT name FROM users WHERE id = $value";
-
-								$user_result = mysqli_query($conn, $user_sql);
-
-								$user_row = mysqli_fetch_assoc($user_result);
-
-								if (mysqli_num_rows($user_result) == 1) {
-									
-									echo $user_row["name"];
-
-								}else{
-
-									echo "user error";
-
-								}
-								
-								break;
-
-							case "active":
-
-
+							$visibility = "Pessoal";
 
 							break;
+
+						case "private":
+
+							$visibility = "Privado";
+
+							break;
+						
+						default:
 							
-							default:
-								
-								echo $value;
+							$visibility = "public or error";
 
-								break;
-
-						}
-
-						echo "</td>";
-
+							break;
 					}
+					
+					$table_line = [
+
+						$row["id"],
+						date("d/m/Y H:i:s", strtotime($row["created_at"])),
+						$row["title"],
+						$row_author["name"],
+						($row["updated_at"] != "") ? (date("d/m/Y H:i:s", strtotime($row["updated_at"]))) : (""),
+						$visibility
+
+					];
+
+					echo "<tr onclick = 'seeNote(" . $row["id"] . ")' >";
+					createTLine($table_line, array_search("Título", $table_header));
+					echo "</tr>";
 
 				}
 
 			}
 
-			echo "</tr>";
-			echo "</a>";
-		
-		}
+		?>
 
-	?>
+	</tbody>
 
 </table>
 
@@ -161,7 +137,7 @@
 	
 	function seeNote(id){
 
-		window.location.href = "?note=" + id;
+		window.location.href = "?page=<?php echo $see_note->pageCode ?>&note=" + id;
 
 		console.log(id);
 
