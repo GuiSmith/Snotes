@@ -2,7 +2,7 @@
 --
 -- Host: localhost    Database: notes
 -- ------------------------------------------------------
--- Server version	10.6.12-MariaDB-0ubuntu0.22.04.1
+-- Server version	10.6.12-MariaDB-0ubuntu0.22.10.1
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -100,7 +100,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (13,'Peter','guilherme.rodrigues@ixcsoft.com.br','$2y$10$ldjJdo121XL17e1HmVMwg.BMzd7LYbn8sQGA7XMQxD5ZBOBn/uRFS','2023-06-10 21:46:35','2023-07-06 22:52:53','2023-07-06 22:52:53',0,NULL,''),(14,'Guilherme','guilhermessmith2014@gmail.com','$2y$10$2zP5MXf6ihONHYkm570S/eJyBccS/0y7T1nfZRf5jYZs1Buc.P/26','2023-06-10 22:09:58','2023-07-10 17:49:57','2023-07-10 17:49:57',0,634176,'Smith'),(15,'Fernandinho','ludansiguer@gmail.com','$2y$10$BfxaJjjFRkYwS7nehG3qquvszR.Vf7fz0Sa8ttdzzBercDxHm.nBi','2023-06-10 22:22:46','2023-07-04 07:59:08',NULL,0,NULL,NULL),(16,'Fernandinho','gabismithdansiguer@gmail.com','$2y$10$z1vkryk.CZ3koFup3lQ5wuh0E7yhw4mn/hmh5QH7S6wkAILODhrLO','2023-06-10 23:39:43','2023-07-04 07:59:08',NULL,0,NULL,NULL),(17,'Fernandinho','lusmithdansiguer@gmail.com','$2y$10$2Fw5zX368iSb9icgKqTarOPfQdhSyP9.okC/MJpQEjylim.4yrqCu','2023-06-11 01:26:39','2023-07-06 22:29:28',NULL,0,740395,NULL),(18,'Fernandinho','jonas.tot@gmail.com','$2y$10$DF9c3V6PXWuZl1JdRWXag.U1MCxq199WA1aeGqxmXPWBrdg0INvvu','2023-06-18 02:02:05','2023-07-04 07:59:08',NULL,0,NULL,NULL),(19,'Fernandinho','guilhermessmith2020@gmail.com','$2y$10$pvehB.qjl8WCHzk38pij8Ol5clsdl9gGzyT.UZtsWM916Ii1ntyrK','2023-06-20 22:35:15','2023-07-04 07:59:08',NULL,0,NULL,NULL),(20,'Fernandinho','jonathan@gmail.com','$2y$10$i4wxtaYbjjAhOTNCN63ZJOmqHhBX6ZZbp3WcK7Z9LcsGzPY/nneKC','2023-06-21 20:36:29','2023-07-04 07:59:08',NULL,0,NULL,NULL),(21,'Fernandinho','mateus.lima@gmail.com','$2y$10$kPjx2pNjvTY9EeFKODGZ0eO1KsxnnmTlokLXrQnDOZ8BCWxEwmqLu','2023-06-21 20:52:10','2023-07-04 07:59:08',NULL,0,NULL,NULL),(29,'Guilherme','guilhermessmith2022@gmail.com','$2y$10$9vqlicBPgas1b6h9rOpMq.R7u60/eFcIy.2luD.ZrVnkhH/accA3O','2023-07-04 21:18:25','2023-07-04 21:18:36','2023-07-04 21:18:36',0,NULL,NULL);
+INSERT INTO `users` VALUES (13,'Peter','guilherme.rodrigues@ixcsoft.com.br','$2y$10$ldjJdo121XL17e1HmVMwg.BMzd7LYbn8sQGA7XMQxD5ZBOBn/uRFS','2023-06-10 21:46:35','2023-07-06 22:52:53','2023-07-06 22:52:53',0,NULL,''),(14,'Guilherme','guilhermessmith2014@gmail.com','$2y$10$2zP5MXf6ihONHYkm570S/eJyBccS/0y7T1nfZRf5jYZs1Buc.P/26','2023-06-10 22:09:58','2023-07-11 12:49:24','2023-07-11 12:49:24',0,634176,'Smith'),(15,'Fernandinho','ludansiguer@gmail.com','$2y$10$BfxaJjjFRkYwS7nehG3qquvszR.Vf7fz0Sa8ttdzzBercDxHm.nBi','2023-06-10 22:22:46','2023-07-04 07:59:08',NULL,0,NULL,NULL),(16,'Fernandinho','gabismithdansiguer@gmail.com','$2y$10$z1vkryk.CZ3koFup3lQ5wuh0E7yhw4mn/hmh5QH7S6wkAILODhrLO','2023-06-10 23:39:43','2023-07-04 07:59:08',NULL,0,NULL,NULL),(17,'Fernandinho','lusmithdansiguer@gmail.com','$2y$10$2Fw5zX368iSb9icgKqTarOPfQdhSyP9.okC/MJpQEjylim.4yrqCu','2023-06-11 01:26:39','2023-07-06 22:29:28',NULL,0,740395,NULL),(18,'Fernandinho','jonas.tot@gmail.com','$2y$10$DF9c3V6PXWuZl1JdRWXag.U1MCxq199WA1aeGqxmXPWBrdg0INvvu','2023-06-18 02:02:05','2023-07-04 07:59:08',NULL,0,NULL,NULL),(19,'Fernandinho','guilhermessmith2020@gmail.com','$2y$10$pvehB.qjl8WCHzk38pij8Ol5clsdl9gGzyT.UZtsWM916Ii1ntyrK','2023-06-20 22:35:15','2023-07-04 07:59:08',NULL,0,NULL,NULL),(20,'Fernandinho','jonathan@gmail.com','$2y$10$i4wxtaYbjjAhOTNCN63ZJOmqHhBX6ZZbp3WcK7Z9LcsGzPY/nneKC','2023-06-21 20:36:29','2023-07-04 07:59:08',NULL,0,NULL,NULL),(21,'Fernandinho','mateus.lima@gmail.com','$2y$10$kPjx2pNjvTY9EeFKODGZ0eO1KsxnnmTlokLXrQnDOZ8BCWxEwmqLu','2023-06-21 20:52:10','2023-07-04 07:59:08',NULL,0,NULL,NULL),(29,'Guilherme','guilhermessmith2022@gmail.com','$2y$10$9vqlicBPgas1b6h9rOpMq.R7u60/eFcIy.2luD.ZrVnkhH/accA3O','2023-07-04 21:18:25','2023-07-04 21:18:36','2023-07-04 21:18:36',0,NULL,NULL);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -113,4 +113,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-07-10 23:56:09
+-- Dump completed on 2023-07-11 18:13:54

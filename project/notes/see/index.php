@@ -50,7 +50,7 @@
 
 ?>
 
-<form method = "POST" action = "main.php?page=<?php echo $edit_note->pageCode ?>" class = "box-center box-content box-editor" onsubmit = "return confirmSubmit()" >
+<form style = "display: <?php if($note["active"]){echo "block";}else{echo "none";} ?>" method = "POST" action = "main.php?page=<?php echo $edit_note->pageCode ?>" class = "box-center box-content box-editor" onsubmit = "return confirmSubmit()" >
 		
 	<input type = "hidden" name = "note_id" value = "<?php echo $note_id ?>">
 

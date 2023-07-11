@@ -139,10 +139,12 @@
 
   function createTHeader($array){
 
-    for ($i=0; $i < count($array); $i++) { 
+    //for associative array
+
+    foreach ($array as $key => $value) {
       
       echo "<th>";
-      echo $array[$i];
+      echo $value;
       echo "</th>";
 
     }
@@ -151,23 +153,11 @@
 
   //Table Line creator
 
-  function createTLine($array, $leftPosition = 1000){
+  function createTLine($array){
 
     for ($i=0; $i < count($array); $i++) { 
       
-      echo "<td ";
-
-      if ($i == $leftPosition) {
-        
-        echo "class = 'text-left'";
-
-      }else{
-
-        echo "class = 'text-center'";
-
-      }
-
-      echo " >";
+      echo "<td class = 'text-center' >";
 
       echo $array[$i];
 
@@ -181,11 +171,11 @@
 
   function createOption($array){
 
-    for($i = 0; $i < count($array); $i++){
-
-      echo "<option class = 'text-center' value = '" . $array[$i] . "'>";
-      echo $array[$i];
-      echo "</option><br>";
+    foreach ($array as $key => $value) {
+      
+      echo "<option class = 'text-center' value = '" . $key . "'>";
+      echo $value;
+      echo "</option>";
 
     }
 

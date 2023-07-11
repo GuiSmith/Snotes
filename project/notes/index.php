@@ -20,17 +20,21 @@
 		<select id = "search-options" class = "search-dropdown search-bar-item" onclick = "search_note()" >
 			
 			<?php
-			
+
+			//For associative array
+
 				$table_header = [
 
-					"ID",
-					"Criação",
-					"Título",
-					"Autor",
-					"Alteração",
-					"Visibilidade"
+					"id" => "ID",
+					"created_at" => "Criação",
+					"title" => "Título",
+					"user_id" => "Autor",
+					"updated_at" => "Alteração",
+					"visibility" => "Visibilidade"
 
 				];
+
+
 
 				createOption($table_header);
 
@@ -49,6 +53,8 @@
 	$notes_sql = "SELECT * FROM notes WHERE active = true";
 
 	$notes_result = mysqli_query($conn, $notes_sql);
+
+	echo array_search("title", $table_header);
 
 ?>
 
@@ -117,7 +123,7 @@
 				];
 
 				echo "<tr class = 'note-line' onclick = 'seeNote(" . $row["id"] . ")' >";
-				createTLine($table_line, array_search("Título", $table_header));
+				createTLine($table_line);
 				echo "</tr>";
 
 			}
@@ -140,11 +146,15 @@
 
 	function search_note(){
 
-		const selected_column = document.getElementById("search-options").selectedIndex;
-		console.log(selected_column);
+		const selected_column_value = document.getElementById("search-options").value;
+		console.log("Column value: " + selected_column_value);
+
+		const selected_column_index = document.getElementById("search-options").selectedIndex;
+		console.log("Column index: " + selected_column_index);
 
 		const search_string = document.getElementById("search-bar-input").value;
-		console.log(search_string);
+		console.log("Search String: " + search_string);
+
 
 		const lines = document.getElementsByClassName("note-line");
 
@@ -152,15 +162,35 @@
 
 			const columns = lines[i].getElementsByTagName("td");
 
-			column = columns[selected_column].textContent;
-			
-			if(column.toLowerCase().includes(search_string.toLowerCase())){
+			column = columns[selected_column_index].textContent;
+
+			switch(selected_column_value){
+
+				case "id":
+
+					if (column == search_string) {
+
+						lines[i].style.display = "table-row";
+
+					}else{
+
+						lines[i].style.display = "none";
+
+					}
+
+					break;
+
+				default:
+
+					console.log("option selected error");
+
+					break;
+
+			}
+
+			if (search_string == "") {
 
 				lines[i].style.display = "table-row";
-
-			}else{
-
-				lines[i].style.display = "none";
 
 			}
 			
