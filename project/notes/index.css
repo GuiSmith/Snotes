@@ -1,4 +1,4 @@
-tr:hover {
+tr.note-line:hover {
 
 	background-color: grey;
 
@@ -13,8 +13,13 @@ th {
 th, td {
 
 	padding: 1rem;
+	
+
+}
+
+td {
+
 	user-select: none;
 	cursor: pointer;
-/*	border: solid 1px black;*/
 
 }

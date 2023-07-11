@@ -177,4 +177,18 @@
 
   }
 
+  //Dropdown option creator
+
+  function createOption($array){
+
+    for($i = 0; $i < count($array); $i++){
+
+      echo "<option class = 'text-center' value = '" . $array[$i] . "'>";
+      echo $array[$i];
+      echo "</option><br>";
+
+    }
+
+  }
+
 ?>

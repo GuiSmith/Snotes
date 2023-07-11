@@ -4,7 +4,7 @@
 
 		$note_id = $_POST["note_id"];
 
-		$note_sql = "SELECT title, text, encryption_key, encryption_IV FROM notes WHERE id = '$note_id'";
+		$note_sql = "SELECT title, text, visibility, encryption_key, encryption_IV FROM notes WHERE id = '$note_id'";
 		$note_result = mysqli_query($conn, $note_sql);
 
 		if (mysqli_num_rows($note_result) == 1) {
@@ -90,7 +90,7 @@
 			
 			<span class = "box-visibility" >
 				
-				<input type = "radio" name = "visibility" id = "personal" value = "personal" checked>
+				<input type = "radio" name = "visibility" id = "personal" value = "personal">
 
 				<label for = "personal" >Pessoal</label>
 
@@ -119,3 +119,30 @@
 	</div>
 
 </form>
+
+<script>
+
+	const personal_radio = document.getElementById("personal");
+	const private_radio = document.getElementById("private");
+
+	const visibility = "<?php echo $note["visibility"] ?>";
+
+	switch(visibility){
+
+		case "personal":
+
+			personal_radio.checked = true;
+			break;
+
+		case "private":
+
+			private_radio.checked = true;
+			break;
+
+		default:
+
+			console.log("Error, visibility = " + visibility);
+
+	}
+
+</script>

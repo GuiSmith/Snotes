@@ -72,7 +72,7 @@
 						
 						case "personal":
 							
-							echo "Ṕessoal";
+							echo "Pessoal";
 							break;
 
 						case "private":

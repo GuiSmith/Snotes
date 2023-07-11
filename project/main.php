@@ -179,15 +179,11 @@
 			
 			document.title = "<?php echo $page_title ?>";
 
-			console.log(document.title);
-
 			//Page Style
 
 			page_style = document.getElementById("page-style");
 
 			page_style.href = "<?php echo $page_style ?>/index.css";
-
-			console.log(page_style.style.src);
 
 			//Redirect
 
