@@ -23,3 +23,40 @@ td {
 	cursor: pointer;
 
 }
+
+.search-form {
+
+/*	border: solid 1px black;*/
+	display: inline-block;
+	height: 25px;
+	padding: 0;
+	word-spacing: none;
+
+}
+
+/*Search bar container*/
+
+.search-bar {
+
+	width: 30%;
+	padding: 5px;
+
+}
+
+.search-bar-item {
+
+	display: inline;
+	height: 100%;
+	outline: none;
+	border: none;
+	background-color: white;
+
+}
+
+/*search form*/
+
+.search-form {
+
+	word-spacing: 0;
+
+}

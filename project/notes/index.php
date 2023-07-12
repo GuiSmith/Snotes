@@ -15,9 +15,9 @@
 
 	</div>
 
-	<div class = "search-form block-center" >
+	<form action = "" method = "POST" class = "search-form block-center text-left" id = "search-box" >
 	
-		<select id = "search-options" class = "search-dropdown search-bar-item" onclick = "search_note()" >
+		<select name = "column" id = "search-options" class = "search-dropdown search-bar-item" onclick = "search_note()" >
 			
 			<?php
 
@@ -34,15 +34,21 @@
 
 				];
 
-
-
 				createOption($table_header);
 
 			?>
 
-		</select><input onkeyup = "search_note()" id = "search-bar-input" class = "search-bar-item" type = "text" name = "search" placeholder = "Pesquise aqui..." title = "Pesquisa uma anotação">
+		</select>
+		
+		<input id = "search-bar-input" class = "search-bar-item" type = "text" name = "search" placeholder = "Pesquise aqui..." title = "Pesquise uma anotação" >
+		
+		<button type = "submit" class = "search-bar-item" >
 
-	</div>
+			>>
+
+		</button>
+
+	</form>
 
 </div>
 
@@ -50,7 +56,24 @@
 
 <?php
 
-	$notes_sql = "SELECT * FROM notes WHERE active = true";
+	if ($_SERVER["REQUEST_METHOD"] == "POST"){
+
+		$column = $_POST["column"];
+		$search = $_POST["search"];
+
+		switch($column){
+
+			case "id":
+
+				$statement = "{$id} = '{$search}'";
+
+				break;
+
+		}
+
+	}
+
+	$notes_sql = "SELECT * FROM notes WHERE active = true ";
 
 	$notes_result = mysqli_query($conn, $notes_sql);
 
@@ -149,51 +172,17 @@
 		const selected_column_value = document.getElementById("search-options").value;
 		console.log("Column value: " + selected_column_value);
 
-		const selected_column_index = document.getElementById("search-options").selectedIndex;
-		console.log("Column index: " + selected_column_index);
+		const search_input = document.getElementById("search-bar-input");
+		console.log("Searched value: " + search_input);
 
-		const search_string = document.getElementById("search-bar-input").value;
-		console.log("Search String: " + search_string);
+		if (selected_column_value == "created_at" || selected_column_value == "updated_at"){
 
+			search_input.type = "datetime-local";
 
-		const lines = document.getElementsByClassName("note-line");
+		}else{
 
-		for(var i = 0; i < lines.length; i++){
+			search_input.type = "text";
 
-			const columns = lines[i].getElementsByTagName("td");
-
-			column = columns[selected_column_index].textContent;
-
-			switch(selected_column_value){
-
-				case "id":
-
-					if (column == search_string) {
-
-						lines[i].style.display = "table-row";
-
-					}else{
-
-						lines[i].style.display = "none";
-
-					}
-
-					break;
-
-				default:
-
-					console.log("option selected error");
-
-					break;
-
-			}
-
-			if (search_string == "") {
-
-				lines[i].style.display = "table-row";
-
-			}
-			
 		}
 
 	}

@@ -13,7 +13,7 @@ body {
 	background: linear-gradient(to left, #ddd, #eee);
   box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
-  padding: 5px;
+  padding: 15px;
 
 }
 
@@ -77,42 +77,6 @@ body {
 .submit-button {
 
 	padding: 0;
-
-}
-
-.search-form {
-
-/*	border: solid 1px black;*/
-	display: inline-block;
-	height: 25px;
-	padding: 0;
-	word-spacing: none;
-
-}
-
-/*Search bar container*/
-
-.search-bar {
-
-	width: 30%;
-	padding: 5px;
-
-}
-
-.search-bar-item {
-
-	height: 100%;
-	outline: none;
-	border: none;
-	background-color: white;
-
-}
-
-/*search form*/
-
-.search-form {
-
-	word-spacing: 0;
 
 }
 

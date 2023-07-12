@@ -1,23 +1,63 @@
-<select id = "select" onclick = "search()">
+<?php
 
-  <option value = "first"  >Primeiro</option>
-  <option value = "second" >Segundo</option>
-  <option value = "third" selected >Terceiro</option>
-  <option value = "fourth" >Quarto</option>
-  <option value = "fifth" >Quinto</option>
+  require "../../connection.php";
 
-</select>
+  if ($_SERVER["REQUEST_METHOD"] == "POST"){
 
-<script>
+    $date_start = $_POST['datetime-start'];
+    $date_end = $_POST['datetime-end'];
 
-  const options = document.getElementsByTagName();
+    echo $date_start . "<Br>";
 
-  function search(){
+    $sql = "SELECT created_at FROM notes WHERE id = 31";
 
-    const selected_value = document.getElementById("select").value;
+    $result = mysqli_query($conn, $sql);
 
-    console.log(selected_value);
+    $row = mysqli_fetch_assoc($result);
+
+    echo $row["created_at"];
+
+    /*
+    $datetimeLocalObj = DateTime::createFromFormat('Y-m-d\TH:i', $datetimeLocal);
+    $datetimeLocalFormatted = $datetimeLocalObj->format('Y-m-d H:i:s');
+
+    $query = "SELECT * FROM notes WHERE created_at BETWEEN '$datetimeLocalFormatted' AND '$datetimeEnd'";
+
+    $result = mysqli_query($conn, $query);
+    while ($row = mysqli_fetch_assoc($result)) {
+      
+      echo $row["title"] . "<br>";
+
+    }
+    */
 
   }
 
-</script>
+?>
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Date Range Filter</title>
+  </head>
+  <body>
+    
+    <h1>Date Range Filter</h1>
+
+    <form method="POST" action="">
+
+      <label for="datetime-start">Select a Start Date and Time:</label>
+
+      <input type="datetime-local" id="datetime-start" name="datetime-start" required><br>
+
+      <label for="datetime-end">Select an End Date and Time:</label>
+
+      <input type="datetime-local" id="datetime-end" name="datetime-end" required><br>
+
+      <button type="submit">Filter</button>
+
+    </form>
+
+  </body>
+
+</html>

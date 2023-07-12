@@ -35,6 +35,22 @@
 
 		<!-- Favicon -->
 		<link rel="icon" type="image/x-icon" href = "media/logo.png">
+
+		<script>
+
+			//Page Style
+
+			function changeStyle(href){
+
+				page_style = document.getElementById("page-style");
+
+				page_style.href = href + "/index.css";
+
+				console.log(page_style.href);
+
+			}
+
+		</script>
 	
 		<title>Home</title>
 	
@@ -70,9 +86,13 @@
 
 									}else{
 
-										require $objects[$i]->fileName . "/index.php";
-
 										$page_style = $objects[$i]->fileName;
+
+										echo "<script>";
+										echo "changeStyle('" . $page_style . "');";
+										echo "</script>";
+										
+										require $objects[$i]->fileName . "/index.php";
 
 										if (!isset($page_title)) {
 											
@@ -115,60 +135,6 @@
 						break;
 				}
 
-				// if (isset($_GET["page"])) {
-
-				// 	for ($i=0; $i < count($objects); $i++) {
-						
-				// 		if ($_GET["page"] == $objects[$i]->pageCode) {
-
-				// 			if ($objects[$i]->logged == "yes" && (!$_SESSION["logged"] || !isset($_SESSION["logged"]))) {
-								
-				// 				header("Location: main.php?page=" . $login->pageCode . "&redirect=" . $objects[$i]->pageCode);
-
-				// 			}else{
-
-				// 				if ($objects[$i]->logged == "no" && (isset($_SESSION['logged']) && $_SESSION['logged'])) {
-									
-				// 					header("Location: main.php?page=" . $home->pageCode);
-
-				// 				}else{
-
-				// 					require $objects[$i]->fileName . "/index.php";
-
-				// 					$page_style = $objects[$i]->fileName;
-
-				// 					$page_title = $objects[$i]->displayName;
-
-				// 				}
-
-				// 			}
-							
-				// 			break;
-
-				// 		}
-
-				// 	}
-					
-				// }else{
-
-				// 	if (isset($_GET["passcode"])) {
-
-				// 		$page_passcode = $_GET["passcode"];
-
-				// 		$page_passcode_sql = "SELECT passcode FROM users WHERE passcode = '$page_passcode'";
-
-				// 		$page_passcode_result = mysqli_query($conn, $page_passcode_sql);
-
-				// 		if (mysqli_num_rows($page_passcode_result) > 0) {
-							
-				// 			require "password/new_password.php";
-
-				// 		}
-						
-				// 	}
-
-				// }
-
 			?>
 
 		</section>
@@ -179,11 +145,7 @@
 			
 			document.title = "<?php echo $page_title ?>";
 
-			//Page Style
-
-			page_style = document.getElementById("page-style");
-
-			page_style.href = "<?php echo $page_style ?>/index.css";
+			
 
 			//Redirect
 
