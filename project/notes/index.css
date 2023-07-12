@@ -28,9 +28,7 @@ td {
 
 /*	border: solid 1px black;*/
 	display: inline-block;
-	height: 25px;
 	padding: 0;
-	word-spacing: none;
 
 }
 
@@ -43,20 +41,18 @@ td {
 
 }
 
-.search-bar-item {
+.search-container {
 
-	display: inline;
+	height: 30px;
+	border: solid 1px black;
+
+}
+
+.search-item {
+
 	height: 100%;
 	outline: none;
 	border: none;
 	background-color: white;
-
-}
-
-/*search form*/
-
-.search-form {
-
-	word-spacing: 0;
 
 }

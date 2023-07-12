@@ -23,7 +23,7 @@
 
 		</label>
 
-		<input type = "text" name = "note_title" id = "note_title" class = "form-control" placeholder = "Digite aqui..." title = "Digite o título de sua anotação" required autofocus >
+		<input type = "text" name = "note_title" id = "note_title" class = "form-control" maxlength = "25" placeholder = "Digite aqui..." title = "Digite o título de sua anotação" required autofocus >
 
 	</div>
 

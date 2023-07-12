@@ -68,7 +68,7 @@
 
 		</label>
 
-		<input type = "text" name = "note_title" id = "note_title" class = "form-control" placeholder = "Digite aqui..." title = "Digite o título de sua anotação" value = "<?php echo $note["title"] ?>" required autofocus >
+		<input type = "text" name = "note_title" id = "note_title" class = "form-control" placeholder = "Digite aqui..." title = "Digite o título de sua anotação" value = "<?php echo $note["title"] ?>" maxlength = "25" required autofocus >
 
 	</div>
 

@@ -1,7 +1,7 @@
 <?php createHeader(
 
 	"Anotações",
-	"Visualize suas anotações!"
+	"Visualize e pesquise suas anotações!"
 
 	)
 
@@ -15,38 +15,56 @@
 
 	</div>
 
-	<form action = "" method = "POST" class = "search-form block-center text-left" id = "search-box" >
-	
-		<select name = "column" id = "search-options" class = "search-dropdown search-bar-item" onclick = "search_note()" >
+	<form action = "" method = "POST" class = "search-form block-center" id = "search-form" >
+
+		<div class = "row" >
 			
-			<?php
+			<div class = "col-sm-4 text-center search-container" >
+				
+				<select name = "column" class = "search-item" id = "search-options" onclick = "search_note()" >
+			
+					<?php
 
-			//For associative array
+					//For associative array
 
-				$table_header = [
+						$table_header = [
 
-					"id" => "ID",
-					"created_at" => "Criação",
-					"title" => "Título",
-					"user_id" => "Autor",
-					"updated_at" => "Alteração",
-					"visibility" => "Visibilidade"
+							"id" => "ID",
+							"created_at" => "Criação",
+							"title" => "Título",
+							"user_id" => "Autor",
+							"updated_at" => "Alteração",
+							"visibility" => "Visibilidade"
 
-				];
+						];
 
-				createOption($table_header);
+						createOption($table_header);
 
-			?>
+					?>
 
-		</select>
+				</select>
+
+			</div>
+
+			<div class = "col-sm-8 text-center search-container" >
+				
+				<input id = "search-bar-input" class = "search-item" type = "date" name = "search" placeholder = "Pesquise aqui..." title = "Pesquise uma anotação" >
+
+			</div>
+
+		</div>
+	
 		
-		<input id = "search-bar-input" class = "search-bar-item" type = "text" name = "search" placeholder = "Pesquise aqui..." title = "Pesquise uma anotação" >
+
+		
 		
 		<button type = "submit" class = "search-bar-item" >
 
 			>>
 
 		</button>
+
+		<button type = "button" class = "search-bar-item" onclick = "addParameter()" title = "Adicione um parâmetro de pesquisa" >+</button>
 
 	</form>
 
@@ -146,7 +164,7 @@
 				];
 
 				echo "<tr class = 'note-line' onclick = 'seeNote(" . $row["id"] . ")' >";
-				createTLine($table_line);
+				createTLine($table_line, 3);
 				echo "</tr>";
 
 			}
@@ -185,6 +203,26 @@
 
 		}
 
+	}
+
+	function addParameter(){
+
+		const form = document.getElementById("search-form");
+		const search_option = document.getElementById("search-options");
+		const search_input = document.getElementById("search-bar-input");
+
+		const search_option_2 = search_option.cloneNode(true);
+		console.log(search_option_2.className);
+		const search_input_2 = search_input.cloneNode(true);
+		const search_box = document.createElement("div");
+
+		// search_box.appendChild(search_option_2);
+		// search_box.appendChild(search_input_2);
+		// form.appendChild(search_box);
+
+		form.appendChild(search_option_2);
+		form.appendChild(search_input_2);
+		
 	}
 
 </script>

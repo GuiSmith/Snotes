@@ -117,7 +117,7 @@
 
   function createLinkButton($text, $href){
 
-    echo "<a class = 'link-button btn btn-info' href = '" . $href . "' >";
+    echo "<a class = 'link-button btn btn-success' href = '" . $href . "' >";
     echo $text;
     echo "</a>";
 
@@ -153,12 +153,20 @@
 
   //Table Line creator
 
-  function createTLine($array){
+  function createTLine($array, $left_position = 1000){
 
-    for ($i=0; $i < count($array); $i++) { 
+    for ($i=0; $i < count($array); $i++) {
+
+      if ($left_position - 1 == $i) {
+        
+        echo "<td class = 'text-left' >";
+
+      }else{
+
+        echo "<td class = 'text-center' >";
+
+      }
       
-      echo "<td class = 'text-center' >";
-
       echo $array[$i];
 
       echo "</td>";
