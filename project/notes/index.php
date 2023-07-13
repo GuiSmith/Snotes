@@ -17,9 +17,9 @@
 
 	<form action = "" method = "POST" class = "search-form block-center" id = "search-form" >
 
-		<div class = "row" >
+		<div class = "row" id = "filter" >
 			
-			<div class = "col-sm-4 text-center search-container" >
+			<div class = "col-sm-3 text-center search-container filter" >
 				
 				<select name = "column" class = "search-item" id = "search-options" onclick = "search_note()" >
 			
@@ -46,25 +46,25 @@
 
 			</div>
 
-			<div class = "col-sm-8 text-center search-container" >
+			<div class = "col-sm-6 text-left search-container filter" >
 				
-				<input id = "search-bar-input" class = "search-item" type = "date" name = "search" placeholder = "Pesquise aqui..." title = "Pesquise uma anotação" >
+				<input id = "search-bar-input" class = "search-item" type = "text" name = "search" placeholder = "Pesquise aqui..." title = "Pesquise uma anotação" >
 
 			</div>
 
-		</div>
-	
-		
+			<div class = "col-sm-3 text-left search-container" >
+				
+				<button type = "submit" class = "search-item">
 
-		
-		
-		<button type = "submit" class = "search-bar-item" >
+					>>
 
-			>>
+				</button>
 
-		</button>
+				<button type = "button" class = "search-item" onclick = "add_filter()" title = "Adicione um parâmetro de pesquisa" style = "padding: 0 10px;" >+</button>
 
-		<button type = "button" class = "search-bar-item" onclick = "addParameter()" title = "Adicione um parâmetro de pesquisa" >+</button>
+			</div>
+
+		</div>	
 
 	</form>
 
@@ -205,23 +205,22 @@
 
 	}
 
-	function addParameter(){
+	function add_filter(){
 
-		const form = document.getElementById("search-form");
-		const search_option = document.getElementById("search-options");
-		const search_input = document.getElementById("search-bar-input");
+		const search_form = document.getElementById("search-form");
 
-		const search_option_2 = search_option.cloneNode(true);
-		console.log(search_option_2.className);
-		const search_input_2 = search_input.cloneNode(true);
-		const search_box = document.createElement("div");
+		const cloned_filters = document.createElement("div");
+		cloned_filters.className = "row";
 
-		// search_box.appendChild(search_option_2);
-		// search_box.appendChild(search_input_2);
-		// form.appendChild(search_box);
+		const elements = document.getElementsByClassName("filter");
 
-		form.appendChild(search_option_2);
-		form.appendChild(search_input_2);
+		const cloned_options = elements[0].cloneNode(true);
+		const cloned_input = elements[1].cloneNode(true);
+
+		search_form.appendChild(cloned_filters);
+
+		cloned_filters.appendChild(cloned_options);
+		cloned_filters.appendChild(cloned_input);
 		
 	}
 
