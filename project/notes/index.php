@@ -1,14 +1,31 @@
 <?php createHeader("Anotações","") ?>
 
-<div class = "box-content box-center text-center search-bar" >
+<div class = "box-content box-center search-bar" >
 
 	<div class = "block-center" >
 		
-		<?php createLinkButton("Novo", "?page=" . $new_note->pageCode) ?>
+		<h4 class = "text-center" >Pesquisa e filtros</h4>
+
+		<h6 class = "text-center" >
+			
+			<?php createLinkButton("Novo", "?page=" . $new_note->pageCode) ?>
+
+		</h6>
+
+		<form action = "" method = "POST" class = "text-center" >
+			
+			<input type = "hidden" name = "filter_option" value = "visibility" >
+
+			<?php
+
+				createFilterButton("privado", "Privado");
+				createFilterButton("pessoal", "Pessoal");
+
+			?>
+
+		</form>
 
 	</div>
-
-	<h4>Pesquisa</h4>
 
 	<form action = "" method = "POST" class = "search-form block-center" id = "search-form" >
 
@@ -104,7 +121,17 @@
 
 					}else{
 
-						$type = "datetime-local";
+						
+						if ($option == "created_at" || $option == "updated_at") {
+							
+							$type = "datetime-local";
+
+						}else{
+
+							$type = "text";
+
+						}
+
 						$value = $_POST["filter_text"];
 
 					}
@@ -119,7 +146,7 @@
 
 			<div class = "col-sm-1 text-right search-container" >
 				
-				<button type = "submit" class = "search-item">
+				<button type = "submit" class = "search-item search-button">
 
 					>>
 
@@ -135,7 +162,7 @@
 
 <h4 class = "text-center" >Visualização</h4>
 
-<!-- Notes -->
+<!-- Notes builder -->
 
 <?php
 
@@ -219,6 +246,8 @@
 
 ?>
 
+<!-- Notes table -->
+
 <table class = "box-content box-center" >
 	
 	<thead>
@@ -293,26 +322,7 @@
 		console.log(id);
 
 	}
-
-	function search_note(){
-
-		const selected_column_value = document.getElementById("search-options").value;
-		const search_operator_list = document.getElementById("search-operator-list");
-		const search_input = document.getElementById("search-bar-input");
-
-		if (selected_column_value == "created_at" || selected_column_value == "updated_at"){
-
-			search_input.type = "datetime-local";
-			search_operator_list.disabled = false;
-
-		}else{
-
-			search_input.type = "text";
-			search_operator_list.disabled = true;
-			search_input.value = "";
-
-		}
-
-	}
 	
 </script>
+
+<script src = "notes/index.js" />

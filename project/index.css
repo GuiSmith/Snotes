@@ -72,14 +72,6 @@ body {
 
 }
 
-/*For when button is a column of a row content*/
-
-.submit-button {
-
-	padding: 0;
-
-}
-
 /*Bootstraps' row class has right and left margin, forcing the page to create a horizontal scroll. Code bellow overwrites it*/
 /**/
 div.row {
@@ -98,5 +90,11 @@ div.row {
 .see-visibility {
 
 	margin: 0.1em 0 0 0;
+
+}
+
+.search-button:hover {
+
+	background-color: lightgreen;
 
 }

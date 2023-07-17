@@ -215,4 +215,16 @@
 
   }
 
+  //Create filter button
+
+  function createFilterButton($value, $text){
+
+    echo "<button class = 'btn btn-info' name = 'filter_text' ";
+    echo "value = '{$value}' >";
+    echo $text;
+    echo "</button> ";
+
+
+  }
+
 ?>
