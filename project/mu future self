@@ -19,3 +19,7 @@ If you forgot your access token or how to create it, just go to settings, develo
 
   IMPORTING SQL: mysql -u root -p notes < notes.sql
   REMEMBER TO CD /VAR/WWW/HTML
+
+  
+  Github key
+    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

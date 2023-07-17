@@ -2,34 +2,65 @@
 
   require "../../connection.php";
 
+  require "../sources.php";
+
+  $table_header = [
+
+    "id" => "ID",
+    "title" => "Título",
+    "created_at" => "Criação",
+    "user_id" => "Autor",
+    "updated_at" => "Alteração",
+    "visibility" => "Visibilidade"
+
+  ];
+
   if ($_SERVER["REQUEST_METHOD"] == "POST"){
 
-    $date_start = $_POST['datetime-start'];
-    $date_end = $_POST['datetime-end'];
+    $sql = "SELECT * FROM notes WHERE active = true";
 
-    echo $date_start . "<Br>";
+    $filter_option = $_POST["filter_option"];
+    $filter_text = $_POST["filter_text"];
 
-    $sql = "SELECT created_at FROM notes WHERE id = 31";
-
-    $result = mysqli_query($conn, $sql);
-
-    $row = mysqli_fetch_assoc($result);
-
-    echo $row["created_at"];
-
-    /*
-    $datetimeLocalObj = DateTime::createFromFormat('Y-m-d\TH:i', $datetimeLocal);
-    $datetimeLocalFormatted = $datetimeLocalObj->format('Y-m-d H:i:s');
-
-    $query = "SELECT * FROM notes WHERE created_at BETWEEN '$datetimeLocalFormatted' AND '$datetimeEnd'";
-
-    $result = mysqli_query($conn, $query);
-    while ($row = mysqli_fetch_assoc($result)) {
+    for ($i=0; $i < count($filter_option); $i++) {
       
-      echo $row["title"] . "<br>";
+      $sql .= " AND ";
+
+      switch ($filter_option[$i]) {
+          
+        case "id":
+          
+          $sql .= "{$filter_option[$i]} = {$filter_text[$i]}";
+
+          break;
+
+        case "title":
+        case "user_id":
+        case "visibility":
+
+          $sql .= "{$filter_option[$i]} LIKE %{$filter_text[$i]}%";
+
+          break;
+
+        case "created_at":
+        case "updated_at":
+
+          $sql .= "{$filter_option}";
+
+          break;
+        
+        default:
+          
+          // $sql += "other: {$filter_option[$i]}";
+
+          break;
+      }
+
+      echo "<br>";
 
     }
-    */
+
+    echo $sql;
 
   }
 
@@ -38,25 +69,56 @@
 <!DOCTYPE html>
 <html>
   <head>
+
     <title>Date Range Filter</title>
+
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
+
   </head>
+
   <body>
     
-    <h1>Date Range Filter</h1>
+    <form method="POST" id = "form" action="" style = "border: solid 1px black; width: 50%;margin: 1em;padding: 0.5em">
 
-    <form method="POST" action="">
+      <h2>Form</h2>
 
-      <label for="datetime-start">Select a Start Date and Time:</label>
+      <button type = "button" onclick = "clone()" >+</button>
+      <button type="submit">Enviar</button>
 
-      <input type="datetime-local" id="datetime-start" name="datetime-start" required><br>
+      <div id = "main-group" class = "form-group" >
 
-      <label for="datetime-end">Select an End Date and Time:</label>
+      <select name = "filter_option[]">
+      
+        <?php createOption($table_header); ?>
+      
+      </select>
+        
+      <input type = "text" name = "filter_text[]" class = "" >
 
-      <input type="datetime-local" id="datetime-end" name="datetime-end" required><br>
-
-      <button type="submit">Filter</button>
+      </div>
 
     </form>
+
+    <script>
+
+      var groups = 1;
+      
+      function clone(){
+
+        const form = document.getElementById("form");
+        const group = document.getElementById("main-group");
+
+        const clonedGroup = group.cloneNode(true);
+        clonedGroup.id = "";
+        clonedGroup.children[1].value = "";
+
+        form.appendChild(clonedGroup);
+
+        console.log(clonedGroup.id);
+
+      }
+
+    </script>
 
   </body>
 

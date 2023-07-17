@@ -177,15 +177,41 @@
 
   //Dropdown option creator
 
-  function createOption($array){
+  function createOption($array, $option){
 
     foreach ($array as $key => $value) {
       
-      echo "<option class = 'text-center' value = '" . $key . "'>";
+      echo "<option class = 'text-center' value = '" . $key . "'";
+
+      if ($key == $option) {
+        
+        echo "selected";
+
+      }else{
+
+        echo "title = '{$option}2'";
+
+      }
+
+      echo " >";
       echo $value;
       echo "</option>";
 
     }
+
+  }
+
+  //Datetime-local (HTML) to datetime (SQL)
+
+  function datetimeSQL($dateTimeLocalValue) {
+    
+    // Create a DateTime object based on the datetime-local value
+    $dateTime = DateTime::createFromFormat('Y-m-d\TH:i', $dateTimeLocalValue, new DateTimeZone('UTC'));
+
+    // Convert the DateTime object to the SQL standard format: Y-m-d H:i:s
+    $formattedDateTime = $dateTime->format('Y-m-d H:i:s');
+
+    return $formattedDateTime;
 
   }
 

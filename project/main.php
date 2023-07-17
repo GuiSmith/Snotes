@@ -1,5 +1,8 @@
 <?php
 
+	ini_set('session.gc_maxlifetime', 28800);
+	ini_set('session.cookie_lifetime', 28800);
+
 	session_start();
 
 	require "../connection.php"; //Database
@@ -145,8 +148,6 @@
 			
 			document.title = "<?php echo $page_title ?>";
 
-			
-
 			//Redirect
 
 			function redirect(){
@@ -188,4 +189,4 @@
 
 	</body>
 
-</html>
+</html> 
