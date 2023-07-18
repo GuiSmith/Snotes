@@ -1,5 +1,4 @@
 <?php createHeader("Anotações","Pesquisa e filtros") ?>
-
 <div class = "box-content box-center text-center search-bar" >
 
 	<!-- New Note -->
@@ -15,7 +14,7 @@
 	<!-- Creation & Alteration -->
 	<div class = "row" >
 		<!-- Creation -->
-		<div class = "col-sm-6" >
+		<div class = "col-sm-4" >
 			<h4>Criação</h4>
 			<form action = "" method = "POST" >
 				<input type = "hidden" name = "filter_option" value = "created_at" >
@@ -28,8 +27,19 @@
 				?>
 			</form>
 		</div>
+		<!-- Visibility -->
+		<div class = "col-sm-4" >
+			<h4>Visibilidade</h4>
+			<form action = "" method = "POST" >
+				<input type = "hidden" name = "filter_option" value = "visibility" >
+				<?php
+					createFilterButton("pessoal", "Pessoal");
+					createFilterButton("privado", "Privado");
+				?>
+			</form>
+		</div>
 		<!-- Alteration -->
-		<div class = "col-sm-6" >
+		<div class = "col-sm-4" >
 			<h4>Alteração</h4>
 			<form action = "" method = "POST" >
 				<input type = "hidden" name = "filter_option" value = "updated_at" >
@@ -43,144 +53,70 @@
 	</div>
 
 	<!-- Visibility -->
-	<form action = "" method = "POST" >
-		<h4>Visibilidade</h4>
-		<input type = "hidden" name = "filter_option" value = "visibility" >
-		<?php
-			createFilterButton("pessoal", "Pessoal");
-			createFilterButton("privado", "Privado");
-		?>
-	</form>
+	
 
 	<form action = "" method = "POST" class = "search-form block-center" id = "search-form" >
+		
+		<!-- Option List -->
+		<select id = "search-options" class = "search-item" name = "filter_option" onclick = "search_note()" >
+			<?php
+			//For associative array
+				$table_header = [
+					"id" => "ID",
+					"created_at" => "Criação",
+					"title" => "Título",
+					"updated_at" => "Alteração",
+					"visibility" => "Visibilidade"
+				];
+				if (!isset($_POST["filter_option"])) {
+					$option = "id";
+				}else{
+					$option = $_POST["filter_option"];
+				}
+				echo "<option value = 'search' >Pesquisar</option>";
+				createOption($table_header);
+			?>
+		</select>
 
-		<div class = "row" id = "filter" >
+		<!-- Operator List -->
+		<?php
+			$operator_list = [
+				">" => "maior que",
+				"<" => "menor que"
+			];
+			if (!isset($_POST["filter_operator"])) {
+				$operator = ">";
+				$disabled = "disabled";
+			}else{
+				$operator = $_POST["filter_operator"];
+				$disabled = "";
+			}
+		?>
+		<select id = "search-operator-list" class = "search-item" name = "filter_operator" <?php echo $disabled ?>>
+			<?php
+				createOption($operator_list, $operator);
+			?>
+		</select>
 
-			<!-- Option List -->
-			
-			<div class = "col-sm-3 text-center search-container" >
-				
-				<select id = "search-options" class = "search-item" name = "filter_option" onclick = "search_note()" >
-			
-					<?php
+		<!-- Input -->
+		<?php
+			if (!isset($_POST["filter_text"])) {
+				$value = "";
+				$type = "text";
+			}else{
+				if ($option == "created_at" || $option == "updated_at") {
+					$type = "datetime-local";
+				}else{
+					$type = "text";
 
-					//For associative array
+				}
+				$value = $_POST["filter_text"];
+			}
+		?>
+		<input id = "search-bar-input" class = "search-item" name = "filter_text" type = "<?php echo $type ?>" placeholder = "Pesquise aqui..." title = "Pesquise uma anotação" value = "<?php echo $value ?>" >
 
-						$table_header = [
-
-							"id" => "ID",
-							"created_at" => "Criação",
-							"title" => "Título",
-							"updated_at" => "Alteração",
-							"visibility" => "Visibilidade"
-
-						];
-
-						if (!isset($_POST["filter_option"])) {
-							
-							$option = "id";
-
-						}else{
-
-							$option = $_POST["filter_option"];
-
-						}
-
-						echo "<option>Pesquisar</option>";
-						createOption($table_header);
-
-					?>
-
-				</select>
-
-			</div>
-
-			<!-- Operator List -->
-
-			<div id = "search-operator" class = "col-sm-3 text-center search-container" >	
-				
-				<?php
-
-					$operator_list = [
-
-						">" => "maior que",
-						"<" => "menor que"
-
-					];
-
-					if (!isset($_POST["filter_operator"])) {
-							
-						$operator = ">";
-						$disabled = "disabled";
-
-					}else{
-
-						$operator = $_POST["filter_operator"];
-						$disabled = "";
-
-					}
-
-				?>
-
-				<select id = "search-operator-list" class = "search-item" name = "filter_operator" <?php echo $disabled ?>>
-
-					<?php
-					
-						createOption($operator_list, $operator);
-
-					?>
-
-				</select>
-
-			</div>
-
-			<!-- Input -->
-
-			<div class = "col-sm-5 text-left search-container" >
-
-				<?php
-
-					if (!isset($_POST["filter_text"])) {
-						
-						$value = "";
-						$type = "text";
-
-					}else{
-
-						
-						if ($option == "created_at" || $option == "updated_at") {
-							
-							$type = "datetime-local";
-
-						}else{
-
-							$type = "text";
-
-						}
-
-						$value = $_POST["filter_text"];
-
-					}
-
-				?>
-				
-				<input id = "search-bar-input" class = "search-item" name = "filter_text" type = "<?php echo $type ?>" placeholder = "Pesquise aqui..." title = "Pesquise uma anotação" style = "width: 100%" value = "<?php echo $value ?>" >
-
-			</div>
-
-			<!-- Search -->
-
-			<div class = "col-sm-1 text-right search-container" >
-				
-				<button type = "submit" class = "search-item search-button">
-
-					>>
-
-				</button>
-
-			</div>
-
-		</div>
+		<!-- Button -->
+			<button type = "submit" class = "search-item search-button">>></button>
 
 	</form>
 
@@ -192,14 +128,16 @@
 
 <?php
 
-	$notes_sql = "SELECT * FROM notes WHERE active = true";
+	$current_user = $_SESSION["user"]["id"];
+
+	$notes_sql = "SELECT * FROM notes WHERE active = true AND user_id = '$current_user'";
 
 	if ($_SERVER["REQUEST_METHOD"] == "POST"){
 
 		$option = $_POST["filter_option"];
 		$value = $_POST["filter_text"];
 
-		if ($value != "") {
+		if ($value != "" && $option != "search") {
 
     	$notes_sql .= " AND {$option} ";
 

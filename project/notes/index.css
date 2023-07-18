@@ -26,8 +26,11 @@ td {
 
 .search-form {
 
-/*	display: inline-block;*/
-	padding: 0;
+	display: inline-block;
+	height: 35px;
+	padding: 1px;
+	border: solid 2px darkgrey;
+	border-radius: 5px;
 
 }
 
@@ -35,7 +38,7 @@ td {
 
 .search-bar {
 
-	width: 30%;
+	width: 40%;
 	padding: 5px;
 
 }
@@ -43,7 +46,6 @@ td {
 .search-container {
 
 	height: 30px;
-/*	border: solid 1px black;*/
 
 }
 
@@ -53,5 +55,11 @@ td {
 	outline: none;
 	border: none;
 	background-color: white;
+
+}
+
+select, option {
+
+	cursor: pointer;
 
 }
