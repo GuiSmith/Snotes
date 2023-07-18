@@ -1,31 +1,56 @@
-<?php createHeader("Anotações","") ?>
+<?php createHeader("Anotações","Pesquisa e filtros") ?>
 
-<div class = "box-content box-center search-bar" >
+<div class = "box-content box-center text-center search-bar" >
 
-	<div class = "block-center" >
-		
-		<h4 class = "text-center" >Pesquisa e filtros</h4>
-
-		<h6 class = "text-center" >
-			
-			<?php createLinkButton("Novo", "?page=" . $new_note->pageCode) ?>
-
-		</h6>
-
-		<form action = "" method = "POST" class = "text-center" >
-			
-			<input type = "hidden" name = "filter_option" value = "visibility" >
-
+	<!-- New Note -->
+	<div>
+		<h4>Nova anotação</h4>
+		<p>
 			<?php
-
-				createFilterButton("privado", "Privado");
-				createFilterButton("pessoal", "Pessoal");
-
+				createLinkButton("Novo", "?page=" . $new_note->pageCode);
 			?>
-
-		</form>
-
+		</p>
 	</div>
+
+	<!-- Creation & Alteration -->
+	<div class = "row" >
+		<!-- Creation -->
+		<div class = "col-sm-6" >
+			<h4>Criação</h4>
+			<form action = "" method = "POST" >
+				<input type = "hidden" name = "filter_option" value = "created_at" >
+				<input type = "hidden" name = "filter_operator" value = ">" >
+				<?php
+					$today = date('Y-m-d') . "T00:00";
+					$week = date("Y-m-d", strtotime("-1 week")) . "T00:00";
+					createFilterButton($today,"Hoje");
+					createFilterButton($week, "Semana");
+				?>
+			</form>
+		</div>
+		<!-- Alteration -->
+		<div class = "col-sm-6" >
+			<h4>Alteração</h4>
+			<form action = "" method = "POST" >
+				<input type = "hidden" name = "filter_option" value = "updated_at" >
+				<input type = "hidden" name = "filter_operator" value = ">" >
+				<?php
+					createFilterButton($today,"Hoje");
+					createFilterButton($week, "Semana");
+				?>
+			</form>
+		</div>
+	</div>
+
+	<!-- Visibility -->
+	<form action = "" method = "POST" >
+		<h4>Visibilidade</h4>
+		<input type = "hidden" name = "filter_option" value = "visibility" >
+		<?php
+			createFilterButton("pessoal", "Pessoal");
+			createFilterButton("privado", "Privado");
+		?>
+	</form>
 
 	<form action = "" method = "POST" class = "search-form block-center" id = "search-form" >
 
@@ -61,7 +86,8 @@
 
 						}
 
-						createOption($table_header, $option);
+						echo "<option>Pesquisar</option>";
+						createOption($table_header);
 
 					?>
 
@@ -100,7 +126,7 @@
 
 					<?php
 					
-						createOPtion($operator_list, $operator);
+						createOption($operator_list, $operator);
 
 					?>
 

@@ -177,23 +177,11 @@
 
   //Dropdown option creator
 
-  function createOption($array, $option){
+  function createOption($array){
 
     foreach ($array as $key => $value) {
       
-      echo "<option class = 'text-center' value = '" . $key . "'";
-
-      if ($key == $option) {
-        
-        echo "selected";
-
-      }else{
-
-        echo "title = '{$option}2'";
-
-      }
-
-      echo " >";
+      echo "<option class = 'text-left' value = '{$key}'>";
       echo $value;
       echo "</option>";
 
@@ -219,12 +207,21 @@
 
   function createFilterButton($value, $text){
 
-    echo "<button class = 'btn btn-info' name = 'filter_text' ";
+    echo "<button id = '{$value}' class = 'btn btn-info' name = 'filter_text' ";
+    echo "onclick = 'buttonStatus(\"{$value}\")'";
     echo "value = '{$value}' >";
     echo $text;
     echo "</button> ";
 
 
+  }
+
+  //Create fast filter form
+
+  function createFastForm(){
+
+
+    
   }
 
 ?>
