@@ -53,8 +53,6 @@
 	</div>
 
 	<!-- Visibility -->
-	
-
 	<form action = "" method = "POST" class = "search-form block-center" id = "search-form" >
 		
 		<!-- Option List -->
@@ -74,7 +72,7 @@
 					$option = $_POST["filter_option"];
 				}
 				echo "<option value = 'search' >Pesquisar</option>";
-				createOption($table_header);
+				createOption($table_header, $option);
 			?>
 		</select>
 
@@ -200,9 +198,9 @@
 
     }
 
-    // echo $notes_sql;
-
 	}
+
+	$notes_sql .= " ORDER BY updated_at DESC";
 
 	$notes_result = mysqli_query($conn, $notes_sql);
 

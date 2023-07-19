@@ -177,11 +177,15 @@
 
   //Dropdown option creator
 
-  function createOption($array){
+  function createOption($array, $option){
 
     foreach ($array as $key => $value) {
       
-      echo "<option class = 'text-left' value = '{$key}'>";
+      echo "<option class = 'text-left' value = '{$key}' ";
+      if ($option == $key) {
+        echo "selected";
+      }
+      echo ">";
       echo $value;
       echo "</option>";
 
