@@ -143,7 +143,7 @@
 
     foreach ($array as $key => $value) {
       
-      echo "<th>";
+      echo "<th onclick = 'orderBy(\"{$key}\")' >";
       echo $value;
       echo "</th>";
 
@@ -209,23 +209,16 @@
 
   //Create filter button
 
-  function createFilterButton($value, $text){
+  function createFilterButton($option, $value, $text){
 
-    echo "<button id = '{$value}' class = 'btn btn-info' name = 'filter_text' ";
-    echo "onclick = 'buttonStatus(\"{$value}\")'";
-    echo "value = '{$value}' >";
+    echo "<button type = 'button' id = '{$option}{$value}' class = 'btn btn-info' ";
+    echo "onclick = 'filter(\"{$option}\",\"{$value}\")'>";
     echo $text;
-    echo "</button> ";
+    echo "</button>";
 
 
   }
 
-  //Create fast filter form
-
-  function createFastForm(){
-
-
-    
-  }
+  
 
 ?>

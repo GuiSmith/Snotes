@@ -18,3 +18,48 @@ function search_note(){
 	}
 
 }
+
+function seeNote(pageCode, id){
+
+	window.location.href = "?page=" + pageCode + "&note=" + id;
+
+	console.log(id);
+
+}
+
+function filter(option, value){
+
+	const option_input = document.getElementById("option-input");
+	const text_input = document.getElementById("text-input");
+	const clicked_button = document.getElementById("clicked-button");
+
+	const filter_form = document.getElementById("filter-form");
+
+	option_input.value = option;
+	text_input.value = value;
+	clicked_button.value = option + value;
+	console.log("Option: " + option_input.value);
+	console.log("Text:" + text_input.value);
+	filter_form.submit();
+
+}
+
+function clickedButton(button_id){
+
+	if (button_id != "none") {
+		const button = document.getElementById(button_id);
+		button.style.backgroundColor = "red";
+	}
+}
+
+function orderBy(value){
+
+	const form = document.getElementById("order-form");
+	const input = document.getElementById("order-by");
+
+	input.value = value;
+	form.submit();
+
+	console.log(input.value);
+
+}

@@ -13,43 +13,36 @@
 
 	<!-- Creation & Alteration -->
 	<div class = "row" >
-		<!-- Creation -->
-		<div class = "col-sm-4" >
-			<h4>Criação</h4>
-			<form action = "" method = "POST" >
-				<input type = "hidden" name = "filter_option" value = "created_at" >
-				<input type = "hidden" name = "filter_operator" value = ">" >
+		<form id = "filter-form" action = "" method = "POST" >
+			<input id = "option-input" type = "hidden" name = "filter_option" value = "id" >
+			<input id = "text-input" type = "hidden" name = "filter_text" value = "id" >
+			<input id = "clicked-button" type = "hidden" name = "clicked_button" value = "id" >
+			<input type = "hidden" name = "filter_operator" value = ">" >
+			<!-- Creation -->
+			<div class = "col-sm-4" >
+				<h4>Criação</h4>
 				<?php
 					$today = date('Y-m-d') . "T00:00";
-					$week = date("Y-m-d", strtotime("-1 week")) . "T00:00";
-					createFilterButton($today,"Hoje");
-					createFilterButton($week, "Semana");
+					$week = date('Y-m-d', strtotime("-1 week")) . "T00:00";
+					createFilterButton("created_at", $today, "Hoje");
+					createFilterButton("created_at", $week, "Semana");
 				?>
-			</form>
-		</div>
-		<!-- Visibility -->
-		<div class = "col-sm-4" >
-			<h4>Visibilidade</h4>
-			<form action = "" method = "POST" >
-				<input type = "hidden" name = "filter_option" value = "visibility" >
+			</div>
+			<div class = "col-sm-4" >
+				<h4>Visibilidade</h4>
 				<?php
-					createFilterButton("pessoal", "Pessoal");
-					createFilterButton("privado", "Privado");
+					createFilterButton("visibility", "pessoal", "Pessoal");
+					createFilterButton("visibility", "privado", "Privado");
 				?>
-			</form>
-		</div>
-		<!-- Alteration -->
-		<div class = "col-sm-4" >
-			<h4>Alteração</h4>
-			<form action = "" method = "POST" >
-				<input type = "hidden" name = "filter_option" value = "updated_at" >
-				<input type = "hidden" name = "filter_operator" value = ">" >
+			</div>
+			<div class = "col-sm-4" >
+				<h4>Alteração</h4>
 				<?php
-					createFilterButton($today,"Hoje");
-					createFilterButton($week, "Semana");
+					createFilterButton("updated_at", $today, "Hoje");
+					createFilterButton("updated_at", $week, "Semana");
 				?>
-			</form>
-		</div>
+			</div>
+		</form>
 	</div>
 
 	<!-- Visibility -->
@@ -67,11 +60,10 @@
 					"visibility" => "Visibilidade"
 				];
 				if (!isset($_POST["filter_option"])) {
-					$option = "id";
+					$option = "title";
 				}else{
 					$option = $_POST["filter_option"];
 				}
-				echo "<option value = 'search' >Pesquisar</option>";
 				createOption($table_header, $option);
 			?>
 		</select>
@@ -120,7 +112,7 @@
 
 </div>
 
-<h4 class = "text-center" >Visualização</h4>
+<?php createHeader("Visualização","Clique e visualize") ?>
 
 <!-- Notes builder -->
 
@@ -132,8 +124,22 @@
 
 	if ($_SERVER["REQUEST_METHOD"] == "POST"){
 
-		$option = $_POST["filter_option"];
-		$value = $_POST["filter_text"];
+		if (isset($_POST["filter_option"])) {
+			$option = $_POST["filter_option"];
+		}
+
+		if (isset($_POST["filter_text"])) {
+			$value = $_POST["filter_text"];
+		}
+				
+		if(isset($_POST["clicked_button"])){
+			$button = $_POST["clicked_button"];
+		}
+		
+		if (isset($_POST["order_by"])) {
+			$column = $_POST["order_by"];
+		}
+		
 
 		if ($value != "" && $option != "search") {
 
@@ -191,8 +197,6 @@
         
         default:
           
-          // $sql += "other: {$filter_option}";
-
           break;
       }
 
@@ -200,7 +204,23 @@
 
 	}
 
-	$notes_sql .= " ORDER BY updated_at DESC";
+	$notes_sql .= " ORDER BY ";
+
+	if (isset($column)) {
+		
+		$notes_sql .= $column;
+
+	}else{
+
+		$notes_sql .= "updated_at";
+
+	}
+
+	$notes_sql .= " DESC";
+
+	// $notes_sql .= " ORDER BY updated_at DESC";
+
+	echo $notes_sql;
 
 	$notes_result = mysqli_query($conn, $notes_sql);
 
@@ -211,16 +231,22 @@
 <!-- Notes table -->
 
 <table class = "box-content box-center" >
-	
-	<thead>
+
+	<form id = "order-form" action = "" method = "POST" >
+
+		<input id = "order-by" type = "hidden" name = "order_by" value = "id" >
 		
-		<?php
+		<thead>
+		
+			<?php
+				createTHeader($table_header);
+			?>
 
-			createTHeader($table_header);
+		</thead>
 
-		?>
-
-	</thead>
+	</form>
+	
+	
 
 	<tbody>
 		
@@ -229,41 +255,29 @@
 			while ($row = mysqli_fetch_assoc($notes_result)) {
 
 				//Visibility
-
 				$visibility;
-
 				switch ($row["visibility"]) {
 					
 					case "personal":
-						
 						$visibility = "Pessoal";
-
 						break;
-
 					case "private":
-
 						$visibility = "Privado";
-
 						break;
-					
 					default:
-						
 						$visibility = "public or error";
-
 						break;
 				}
 				
 				$table_line = [
-
 					$row["id"],
 					date("d/m/Y H:i:s", strtotime($row["created_at"])),
 					$row["title"],
 					($row["updated_at"] != "") ? (date("d/m/Y H:i:s", strtotime($row["updated_at"]))) : (""),
 					$visibility
-
 				];
 
-				echo "<tr class = 'note-line' onclick = 'seeNote(" . $row["id"] . ")' >";
+				echo "<tr class = 'note-line' onclick = 'seeNote(" . $see_note->pageCode . "," . $row["id"] . ")' >";
 				createTLine($table_line, 3);
 				echo "</tr>";
 
@@ -275,16 +289,10 @@
 
 </table>
 
+<script src = "notes/index.js" ></script>
+
 <script>
-	
-	function seeNote(id){
 
-		window.location.href = "?page=<?php echo $see_note->pageCode ?>&note=" + id;
+	clickedButton("<?php if(isset($button)){echo $button;}else{echo "none";} ?>");
 
-		console.log(id);
-
-	}
-	
 </script>
-
-<script src = "notes/index.js" />

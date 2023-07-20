@@ -13,6 +13,7 @@ th {
 th, td {
 
 	padding: 1rem;
+	cursor: pointer;
 	
 
 }
@@ -20,7 +21,6 @@ th, td {
 td {
 
 	user-select: none;
-	cursor: pointer;
 
 }
 
@@ -38,7 +38,7 @@ td {
 
 .search-bar {
 
-	width: 40%;
+	width: 50%;
 	padding: 5px;
 
 }
