@@ -1,8 +1,25 @@
-<?php createHeader("Anotações","Pesquisa e filtros") ?>
+<?php
+	if (isset($_GET["user_id"])) {
+		$user_id = $_GET["user_id"];
+		$user_sql = "SELECT * FROM users WHERE id = $user_id";
+		$user_result = mysqli_query($conn, $user_sql);
+		if (mysqli_num_rows($user_result) >= 1) {
+			$user = mysqli_fetch_assoc($user_result);
+		}else{
+			createHeader("Usuário não encontrado", "Este usuário foi deletado ou desativado");
+			die();
+		}
+	}
+	if (isset($user)) {
+		$header_title = "Anotações de {$user["name"]}";
+	}else{
+		$header_title = "Minhas anotações";
+	}
+	createHeader($header_title,"Pesquisa e filtros");
+?>
 <div class = "box-content box-center text-center search-bar" >
-
 	<!-- New Note -->
-	<div>
+	<div style = "display: <?php if(isset($user)){echo "none";}else{echo "block";} ?>" >
 		<h4>Nova anotação</h4>
 		<p>
 			<?php
@@ -10,7 +27,6 @@
 			?>
 		</p>
 	</div>
-
 	<!-- Creation & Alteration -->
 	<div class = "row" >
 		<form id = "filter-form" action = "" method = "POST" >
@@ -31,7 +47,9 @@
 			<div class = "col-sm-4" >
 				<h4>Visibilidade</h4>
 				<?php
-					createFilterButton("visibility", "pessoal", "Pessoal");
+					if (!isset($user)) {
+						createFilterButton("visibility", "pessoal", "Pessoal");
+					}
 					createFilterButton("visibility", "privado", "Privado");
 				?>
 			</div>
@@ -45,13 +63,11 @@
 		</form>
 	</div>
 
-	<!-- Visibility -->
+	<!-- Filter Form -->
 	<form action = "" method = "POST" class = "search-form block-center" id = "search-form" >
-		
 		<!-- Option List -->
 		<select id = "search-options" class = "search-item" name = "filter_option" onclick = "search_note()" >
 			<?php
-			//For associative array
 				$table_header = [
 					"id" => "ID",
 					"created_at" => "Criação",
@@ -67,7 +83,6 @@
 				createOption($table_header, $option);
 			?>
 		</select>
-
 		<!-- Operator List -->
 		<?php
 			$operator_list = [
@@ -87,7 +102,6 @@
 				createOption($operator_list, $operator);
 			?>
 		</select>
-
 		<!-- Input -->
 		<?php
 			if (!isset($_POST["filter_text"])) {
@@ -107,157 +121,86 @@
 
 		<!-- Button -->
 			<button type = "submit" class = "search-item search-button">>></button>
-
 	</form>
-
 </div>
-
 <?php createHeader("Visualização","Clique e visualize") ?>
-
 <!-- Notes builder -->
-
 <?php
-
-	$current_user = $_SESSION["user"]["id"];
-
-	$notes_sql = "SELECT * FROM notes WHERE active = true AND user_id = '$current_user'";
-
+	if (isset($user)) {
+		$author_id = $user["id"];
+	}else{
+		$author_id = $_SESSION["user"]["id"];
+	}
+	$notes_sql = "SELECT * FROM notes WHERE active = true AND user_id = '$author_id'";
+	if (isset($user)) {
+		$notes_sql .= " AND visibility = 'private'";
+	}
 	if ($_SERVER["REQUEST_METHOD"] == "POST"){
-
-		if (isset($_POST["filter_option"])) {
-			$option = $_POST["filter_option"];
-		}
-
-		if (isset($_POST["filter_text"])) {
-			$value = $_POST["filter_text"];
-		}
-				
+		$option = $_POST["filter_option"];
+		$value = $_POST["filter_text"];
 		if(isset($_POST["clicked_button"])){
 			$button = $_POST["clicked_button"];
 		}
-		
-		if (isset($_POST["order_by"])) {
-			$column = $_POST["order_by"];
-		}
-		
-
 		if ($value != "" && $option != "search") {
-
     	$notes_sql .= " AND {$option} ";
-
-    	// echo "Valor: " . $value . "<Br>";
-    	
     	switch ($option) {
-
     		//ID
         case "id":
           $notes_sql .= "= {$value}";
           break;
-
         //Title
         case "title":
         	$notes_sql .= "LIKE '%{$value}%'";
           break;
-
         //Visibility
         case "visibility":
         	switch (strtolower($value)) {
-
         		case "privado":
         			$visibility_query = "private";
         			break;
-
         		case "pessoal":
+        			if (isset($user)) {
+        				$visibility_query = "private";
+        				break;
+        			}
         			$visibility_query = "personal";
         			break;
-        		
         		default:
         			$visibility_query = "public";
         			break;
         	}
-
-        	$notes_sql .= "LIKE '%{$visibility_query}%'";
+        	$notes_sql .= "= '{$visibility_query}'";
         	break;
-
         //Creation and Alteration
         case "created_at":
         case "updated_at":
-
         	$operator = $_POST["filter_operator"];
-
         	$sqlDatetime = datetimeSQL($value);
-
-        	// echo "HTML Datetime: " . $value . "<br>";
-
-        	// echo "SQL Datetime: " . $sqlDatetime . "<br>";
-
           $notes_sql .= "{$operator} '{$sqlDatetime}'";
-
           break;
-        
         default:
-          
           break;
       }
-
     }
-
 	}
-
-	$notes_sql .= " ORDER BY ";
-
-	if (isset($column)) {
-		
-		$notes_sql .= $column;
-
-	}else{
-
-		$notes_sql .= "updated_at";
-
-	}
-
-	$notes_sql .= " DESC";
-
-	// $notes_sql .= " ORDER BY updated_at DESC";
-
-	echo $notes_sql;
+	$notes_sql .= " ORDER BY updated_at DESC";
 
 	$notes_result = mysqli_query($conn, $notes_sql);
-
 	echo array_search("title", $table_header);
-
 ?>
-
 <!-- Notes table -->
-
 <table class = "box-content box-center" >
-
-	<form id = "order-form" action = "" method = "POST" >
-
-		<input id = "order-by" type = "hidden" name = "order_by" value = "id" >
-		
-		<thead>
-		
-			<?php
-				createTHeader($table_header);
-			?>
-
-		</thead>
-
-	</form>
-	
-	
-
-	<tbody>
-		
+	<thead>
 		<?php
-
+			createTHeader($table_header);
+		?>
+	</thead>
+	<tbody>
+		<?php
 			while ($row = mysqli_fetch_assoc($notes_result)) {
-
 				//Visibility
 				$visibility;
 				switch ($row["visibility"]) {
-					
 					case "personal":
 						$visibility = "Pessoal";
 						break;
@@ -268,7 +211,6 @@
 						$visibility = "public or error";
 						break;
 				}
-				
 				$table_line = [
 					$row["id"],
 					date("d/m/Y H:i:s", strtotime($row["created_at"])),
@@ -276,23 +218,15 @@
 					($row["updated_at"] != "") ? (date("d/m/Y H:i:s", strtotime($row["updated_at"]))) : (""),
 					$visibility
 				];
-
-				echo "<tr class = 'note-line' onclick = 'seeNote(" . $see_note->pageCode . "," . $row["id"] . ")' >";
+				echo "<tr class = 'note-line' onclick = 'seeRegister({$see_note->pageCode}, \"note\",{$row["id"]})' >";
 				createTLine($table_line, 3);
 				echo "</tr>";
-
 			}
-
 		?>
-
 	</tbody>
-
 </table>
-
 <script src = "notes/index.js" ></script>
-
 <script>
-
 	clickedButton("<?php if(isset($button)){echo $button;}else{echo "none";} ?>");
-
+	alterColumn("<?php if(isset($column)){echo $column;}else{echo "none";} ?>","<?php if(isset($old_column)){echo $old_column;}else{echo "none";} ?>");
 </script>

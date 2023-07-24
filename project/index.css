@@ -1,100 +1,119 @@
 /*Background Page*/
-
 body {
-
 	background: linear-gradient(to right, #ccc, #eee);
-
 }
 
 /*Shadow box*/
-
 .box-content {
-	
 	background: linear-gradient(to left, #ddd, #eee);
   box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
   padding: 15px;
-
 }
 
 /*Main centered content*/
-
 .box-center {
-
 	margin: 2rem auto;
-
 }
 
 /*General centered content*/
-
 .block-center {
-
 	margin: 1rem auto;
-
 }
 
 /*Forms like login, register, profile, new note/story, etc.*/
-
 .box-form {
-
 	width: 35%;
 	padding: 10px;
-
 }
 
 /*Specific width for new note/story, etc.*/
-
 .box-editor {
-
 	width: 65%;
+}
 
+.box-text {
+	width: 80%;
 }
 
 /*Story block*/
-
 .box-grid {
-
 	display: inline-block;
 	width: 300px;
 	padding: 5px;
 	word-spacing: normal;
 	overflow: hidden;
 	box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.1);
-
 }
 
 /*Link buttons*/
 
 .link-button, .link-button:hover {
-
 	color: white;
 	text-decoration: none;
-
 }
 
 /*Bootstraps' row class has right and left margin, forcing the page to create a horizontal scroll. Code bellow overwrites it*/
 /**/
 div.row {
-
 	margin: 0;
-	
-
 }
 
 .row > * {
-
 	padding: 0;
-
 }
 
 .see-visibility {
-
 	margin: 0.1em 0 0 0;
-
 }
 
-.search-button:hover {
+.search-button {
+	color: black;
+	border-radius: 3px;
+}
 
-	background-color: lightgreen;
+.search-form {
+	display: inline-block;
+	height: 35px;
+	padding: 1px;
+	border: solid 2px darkgrey;
+	border-radius: 5px;
+}
 
+.search-item {
+	height: 100%;
+	outline: none;
+	border: none;
+	background-color: white;
+}
+
+.search-bar {
+	width: 50%;
+	padding: 5px;
+}
+
+tr.note-line:hover, tr.user-line:hover {
+	background-color: #bbb;
+}
+
+th {
+	text-align: center;
+}
+
+th, td {
+	padding: 1rem;
+	cursor: pointer;
+}
+
+td {
+	user-select: none;
+}
+
+select, option {
+	cursor: pointer;
+}
+
+.box-text p {
+	text-align: justify;
+	text-indent: 1rem;
 }

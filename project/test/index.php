@@ -1,147 +1,122 @@
-<link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
-
 <style>
+
   table {
     border-collapse: collapse;
   }
-
-  th, td {
-    border: 1px solid black;
-    padding: 8px;
-    text-align: center;
+  
+  td, table {
+    border: solid 1px black;
+    padding: 5px;
   }
 
-  th {
-
-  	cursor: pointer;
-
+  tr:hover {
+    background-color: lightgrey;
+    cursor: pointer;
   }
+
 </style>
 
-<form id = "form" method = "POST" style = "width: 25%;margin: 1rem;" >
-
-	<label for = 'text' class = "form-label" >Texto</label>
-
-	<input type = "text" name = "text" id = "text" class = "form-control" >
-	
-	<div class = "text-right" >
-		
-		<span class = "btn btn-info" onclick = "formSubmit()" >Enviar</span>
-
-	</div>
-
-</form>
-
-
-
 <table>
-  <tr>
-  	<form id = "form-table" >
-  		<input type = "hidden" name = "text" id = "hidden-input" >
-  		<th onclick = "formSubmit('id')" >ID</th>
-	    <th onclick = "formSubmit('name')" >Name</th>
-	    <th onclick = "formSubmit('age')" >Age</th>
-	    <th onclick = "formSubmit('city')" >City</th>
-	    <th onclick = "formSubmit('salary')" >Salary</th>
-  	</form>
-<!--   </tr>
-  <tr>
-    <td>1</td>
-    <td>John</td>
-    <td>25</td>
-    <td>New York</td>
-    <td>50000</td>
-  </tr>
-  <tr>
-    <td>2</td>
-    <td>Emma</td>
-    <td>28</td>
-    <td>London</td>
-    <td>65000</td>
-  </tr>
-  <tr>
-    <td>3</td>
-    <td>Peter</td>
-    <td>32</td>
-    <td>Paris</td>
-    <td>72000</td>
-  </tr>
-  <tr>
-    <td>4</td>
-    <td>Lisa</td>
-    <td>29</td>
-    <td>Berlin</td>
-    <td>55000</td>
-  </tr>
-  <tr>
-    <td>5</td>
-    <td>Michael</td>
-    <td>45</td>
-    <td>Tokyo</td>
-    <td>80000</td>
-  </tr>
-  <tr>
-    <td>6</td>
-    <td>Sarah</td>
-    <td>31</td>
-    <td>Sydney</td>
-    <td>60000</td>
-  </tr>
-  <tr>
-    <td>7</td>
-    <td>David</td>
-    <td>37</td>
-    <td>Los Angeles</td>
-    <td>67000</td>
-  </tr>
-  <tr>
-    <td>8</td>
-    <td>Emily</td>
-    <td>26</td>
-    <td>Toronto</td>
-    <td>52000</td>
-  </tr>
-  <tr>
-    <td>9</td>
-    <td>James</td>
-    <td>29</td>
-    <td>Melbourne</td>
-    <td>59000</td>
-  </tr>
-  <tr>
-    <td>10</td>
-    <td>Amy</td>
-    <td>33</td>
-    <td>Seoul</td>
-    <td>68000</td>
-  </tr> -->
+  <thead>
+    <tr>
+      <th onclick = "sortColumn(0)" >Name</th>
+      <th onclick = "sortColumn(1)" >Age</th>
+      <th onclick = "sortColumn(2)" >Country</th>
+      <th onclick = "sortColumn(3)" >Occupation</th>
+      <th onclick = "sortColumn(4)" >Email</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>John Doe</td>
+      <td>30</td>
+      <td>USA</td>
+      <td>Engineer</td>
+      <td>john.doe@example.com</td>
+    </tr>
+    <tr>
+      <td>Alice Smith</td>
+      <td>25</td>
+      <td>Canada</td>
+      <td>Teacher</td>
+      <td>alice.smith@example.com</td>
+    </tr>
+    <tr>
+      <td>Bob Johnson</td>
+      <td>28</td>
+      <td>UK</td>
+      <td>Software Developer</td>
+      <td>bob.johnson@example.com</td>
+    </tr>
+    <tr>
+      <td>Mary Lee</td>
+      <td>32</td>
+      <td>Australia</td>
+      <td>Doctor</td>
+      <td>mary.lee@example.com</td>
+    </tr>
+    <tr>
+      <td>Michael Chen</td>
+      <td>29</td>
+      <td>China</td>
+      <td>Business Analyst</td>
+      <td>michael.chen@example.com</td>
+    </tr>
+    <tr>
+      <td>Sophia Kim</td>
+      <td>27</td>
+      <td>South Korea</td>
+      <td>Designer</td>
+      <td>sophia.kim@example.com</td>
+    </tr>
+    <tr>
+      <td>Ahmed Ali</td>
+      <td>31</td>
+      <td>Egypt</td>
+      <td>Architect</td>
+      <td>ahmed.ali@example.com</td>
+    </tr>
+  </tbody>
 </table>
 
 <script>
-	
-	function formSubmit(column){
 
-		const input = document.getElementById("hidden-input");
-		const form = input.parentElement;
+  var order = "asc";
 
-		input.name = column;
+  function sortColumn(column){
 
-		console.log("Input name: " + input.name);
-		console.log("Form ID: " + form.id);
+    const table = document.querySelector('table');
+    const tbody = table.querySelector("tbody");
+    const rows = Array.from(tbody.querySelectorAll('tr'));
+    
+    rows.sort((row1, row2) => {
+      const cell1 = row1.children[column].innerText.toLowerCase();
+      const cell2 = row2.children[column].innerText.toLowerCase();
+      return order === 'asc' ? cell1.localeCompare(cell2, {numeric: true}) : cell2.localeCompare(cell1, {numeric: true});
+    });
 
-		// form.submit();
+    order = order == "asc" ? "desc" : "asc";
 
-	}
+    rows.forEach(row => tbody.appendChild(row));
+
+  }
+
+  // let currentSortOrder = 'asc';
+
+  // function sortColumn(column) {
+  //   const table = document.querySelector('table');
+  //   const tbody = table.querySelector('tbody');
+  //   const rows = Array.from(tbody.querySelectorAll('tr'));
+
+  //   rows.sort((row1, row2) => {
+  //     const cell1 = row1.children[column].innerText.toLowerCase();
+  //     const cell2 = row2.children[column].innerText.toLowerCase();
+  //     return currentSortOrder === 'asc' ? cell1.localeCompare(cell2, undefined, { numeric: true }) : cell2.localeCompare(cell1, undefined, { numeric: true });
+  //   });
+
+  //   currentSortOrder = currentSortOrder === 'asc' ? 'desc' : 'asc';
+
+  //   rows.forEach(row => tbody.appendChild(row));
+  // }
 
 </script>
-
-<?php
-
-	if($_SERVER["REQUEST_METHOD"] == "POST"){
-
-		$text = $_POST["text"];
-		echo "Texto: {$text}";
-
-	}
-	
-?>

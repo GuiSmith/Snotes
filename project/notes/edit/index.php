@@ -36,6 +36,9 @@
 
 		}
 
+	}else{
+		createHeader("Caminho indevido", "Edite uma anotação ao visualiza-la!");
+		die();
 	}
 
 ?>

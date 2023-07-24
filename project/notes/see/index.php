@@ -12,6 +12,17 @@
 			
 			$note = mysqli_fetch_assoc($note_result);
 
+			if ($note["user_id"] != $_SESSION["user"]["id"]) {
+				if ($note["visibility"] != "private") {
+					createHeader("Anotação pessoal", "Esta anotação é pessoal");
+					die();
+				}else{
+					$form_display = "none";
+				}
+			}else{
+				$form_display = "block";
+			}
+
 			$encryption_key = hex2bin($note["encryption_key"]);
 			$encryption_IV = hex2bin($note["encryption_IV"]);
 
@@ -19,97 +30,65 @@
 
 			if ($note["active"]) {
 
-				createHeader($note["title"],"Anotação");
-				
+				if ($form_display == "none") { //None means it's not YOUR note, block or any other thing means it's your note
+					$user_id = $note["user_id"];
+					$user_sql = "SELECT name FROM users WHERE id = '$user_id'";
+					$user_result = mysqli_query($conn, $user_sql);
+					if (mysqli_num_rows($user_result) >= 1) {
+						$user = mysqli_fetch_assoc($user_result);
+						$header_subtitle = "Anotação de {$user["name"]}";
+					}else{
+						$header_subtitle = "Anotação de Excluído";
+					}
+				}else{
+					$header_subtitle = "Minha anotação";
+				}
+				createHeader($note["title"],$header_subtitle);
 				echo "<div class = 'box-center box-content box-editor' >";
-
 				echo $note_decrypted_text;
-
 				$page_title = $note["title"];
-
 				echo "</div>";
-
 			}else{
-
-				createHeader(
-
-					"Anotação Excluída",
-					"Esta anotação foi excluída pelo autor"
-
-				);
-
+				createHeader("Anotação Excluída","Esta anotação foi excluída pelo autor");
+				$form_display = "none";
 			}
-
 		}
-
 	}else{
-
 		header("Location: main.php?page=" . $notes->pageCode);
-
 	}
-
 ?>
 
-<form style = "display: <?php if($note["active"]){echo "block";}else{echo "none";} ?>" method = "POST" action = "main.php?page=<?php echo $edit_note->pageCode ?>" class = "box-center box-content box-editor" onsubmit = "return confirmSubmit()" >
-		
+<form style = "display: <?php echo $form_display ?>" method = "POST" action = "main.php?page=<?php echo $edit_note->pageCode ?>" class = "box-center box-content box-editor" onsubmit = "return confirmSubmit()" >
 	<input type = "hidden" name = "note_id" value = "<?php echo $note_id ?>">
-
 	<div class = "row" >
-		
 		<div class = "col-sm-4 text-left" >
-			
 			<button type = "submit" name = "operation" value = "delete" class = "btn btn-danger">Excluir</button>
-
 		</div>
-
 		<div class = "col-sm-4 text-center" >
-			
 			<h3 class = "see-visibility" >
-					
 				<?php
-
 					switch ($note["visibility"]) {
-						
 						case "personal":
-							
 							echo "Pessoal";
 							break;
-
 						case "private":
-
 							echo "Privado";
 							break;
-						
 						default:
-							
 							echo "visibility error";
 							break;
 					}
-
 				?>
-
 			</h3>
-
 		</div>
-
 		<div class = "col-sm-4 text-right" >
-			
 			<button type = "submit" name = "submit" class = "btn btn-info" >Editar</button>
-
 		</div>
-
 	</div>
-
 </form>
-
 <script>
-	
 	function confirmSubmit(){
-
 		var operation = document.querySelector("button[name='operation']:focus").value;
-
 		return confirm("Tem certeza de que deseja excluir esta anotação? Essa ação é irreversível!");
-
 	}
-
 </script>

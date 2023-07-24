@@ -46,20 +46,10 @@ function filter(option, value){
 
 function clickedButton(button_id){
 
-	if (button_id != "none") {
+	if (button_id != "none" && button_id != "") {
 		const button = document.getElementById(button_id);
-		button.style.backgroundColor = "red";
+		button.classList.remove("btn-info");
+		button.classList.add("btn-warning");
+		// button.style.backgroundColor = "red";
 	}
-}
-
-function orderBy(value){
-
-	const form = document.getElementById("order-form");
-	const input = document.getElementById("order-by");
-
-	input.value = value;
-	form.submit();
-
-	console.log(input.value);
-
 }

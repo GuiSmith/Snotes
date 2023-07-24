@@ -86,13 +86,9 @@
 			unset($_SESSION["login_password"]);
 
 			if (isset($_GET["redirect"])) {
-				
 				header("Location: ../main.php?page=" . $_GET["redirect"]);
-
 			}else{
-
-				header("Location: ../main.php?page=" . $profile->pageCode);
-
+				header("Location: ../main.php?page={$home->pageCode}");
 			}
 
 		}else{

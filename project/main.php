@@ -65,55 +65,31 @@
 			<?php
 
 				switch (true) {
-
 					// Page
-					
 					case (isset($_GET["page"])):
-						
 						for ($i=0; $i < count($objects); $i++) {
-						
 							if ($_GET["page"] == $objects[$i]->pageCode) {
-
 								if ($objects[$i]->logged == "yes" && (!$_SESSION["logged"] || !isset($_SESSION["logged"]))) {
-									
 									header("Location: main.php?page=" . $login->pageCode . "&redirect=" . $objects[$i]->pageCode);
-
 								}else{
-
 									if ($objects[$i]->logged == "no" && (isset($_SESSION['logged']) && $_SESSION['logged'])) {
-										
 										header("Location: main.php?page=" . $origin->pageCode);
-
 									}else{
-
 										$page_style = $objects[$i]->fileName;
-
 										echo "<script>";
-										echo "changeStyle('" . $page_style . "');";
+										echo "changeStyle('{$page_style}')";
 										echo "</script>";
-										
 										require $objects[$i]->fileName . "/index.php";
-
 										if (!isset($page_title)) {
-											
 											$page_title = $objects[$i]->displayName;
-											
 										}
-
 									}
-
 								}
-								
 								break;
-
 							}
-
 						}
-
 						break;
-
 					// Passcode
-
 					case (isset($_GET["passcode"])):
 
 						$page_passcode = $_GET["passcode"];
@@ -139,32 +115,18 @@
 
 		</section>
 
+		<script src = "index.js" ></script>
+
 		<script>
 
 			//Title
 			
 			document.title = "<?php echo $page_title ?>";
+			console.log(document.title);
 
-			//Redirect
-
-			function redirect(){
-
-				var confirmed = window.confirm("Tem certeza de que deseja sair? Seu progresso será perdido!");
-
-				if (confirmed) {
-
-					window.location.href = "?page=<?php echo $home->pageCode ?>";
-
-				}else{
-
-					alert("ok");
-
-				}
-
-			}
+			console.log(teset);
 
 			//Text editor
-
 			$(document).ready(function() {
           $('#summernote').summernote();
       });
