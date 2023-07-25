@@ -54,8 +54,7 @@ body {
 }
 
 /*Bootstraps' row class has right and left margin, forcing the page to create a horizontal scroll. Code bellow overwrites it*/
-/**/
-div.row {
+.row {
 	margin: 0;
 }
 

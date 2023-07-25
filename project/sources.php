@@ -119,9 +119,9 @@
 
   //Table Line creator
 
-  function createTLine($array, $left_position = 1000){
+  function createTLine($array, $left_position = [null]){
     for ($i=0; $i < count($array); $i++) {
-      if ($left_position - 1 == $i) {
+      if (in_array($i, $left_position)) {
         echo "<td class = 'text-left' >";
       }else{
         echo "<td class = 'text-center' >";

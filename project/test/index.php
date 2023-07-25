@@ -1,122 +1,87 @@
+<!-- HTML -->
+<button id="exportPdfButton">Export to PDF</button>
+
 <style>
-
-  table {
-    border-collapse: collapse;
+  p {
+    text-align: justify;
+    text-indent: 2rem;
+    width: 80%;
+    margin: 0 auto;
   }
-  
-  td, table {
-    border: solid 1px black;
-    padding: 5px;
-  }
-
-  tr:hover {
-    background-color: lightgrey;
-    cursor: pointer;
-  }
-
 </style>
 
-<table>
-  <thead>
-    <tr>
-      <th onclick = "sortColumn(0)" >Name</th>
-      <th onclick = "sortColumn(1)" >Age</th>
-      <th onclick = "sortColumn(2)" >Country</th>
-      <th onclick = "sortColumn(3)" >Occupation</th>
-      <th onclick = "sortColumn(4)" >Email</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>John Doe</td>
-      <td>30</td>
-      <td>USA</td>
-      <td>Engineer</td>
-      <td>john.doe@example.com</td>
-    </tr>
-    <tr>
-      <td>Alice Smith</td>
-      <td>25</td>
-      <td>Canada</td>
-      <td>Teacher</td>
-      <td>alice.smith@example.com</td>
-    </tr>
-    <tr>
-      <td>Bob Johnson</td>
-      <td>28</td>
-      <td>UK</td>
-      <td>Software Developer</td>
-      <td>bob.johnson@example.com</td>
-    </tr>
-    <tr>
-      <td>Mary Lee</td>
-      <td>32</td>
-      <td>Australia</td>
-      <td>Doctor</td>
-      <td>mary.lee@example.com</td>
-    </tr>
-    <tr>
-      <td>Michael Chen</td>
-      <td>29</td>
-      <td>China</td>
-      <td>Business Analyst</td>
-      <td>michael.chen@example.com</td>
-    </tr>
-    <tr>
-      <td>Sophia Kim</td>
-      <td>27</td>
-      <td>South Korea</td>
-      <td>Designer</td>
-      <td>sophia.kim@example.com</td>
-    </tr>
-    <tr>
-      <td>Ahmed Ali</td>
-      <td>31</td>
-      <td>Egypt</td>
-      <td>Architect</td>
-      <td>ahmed.ali@example.com</td>
-    </tr>
-  </tbody>
-</table>
+<div id = "nodeToExport">
+  <h2 style = "text-align: center;" >Título</h2>
+  <p>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean enim enim,
+    ullamcorper at sapien vitae, dapibus malesuada elit. Nulla maximus sem vitae
+    nisl semper malesuada. Fusce dapibus lectus sed dolor maximus, convallis
+    consequat eros molestie. Nulla sodales interdum nunc, vel elementum tellus
+    convallis nec. Morbi posuere molestie ultricies. In vitae dui ullamcorper,
+    tristique nulla vel, molestie leo. Vivamus et nisl sed urna congue aliquet
+    aliquet at neque. Phasellus quis aliquam lectus. Vestibulum vitae accumsan
+    eros, a malesuada nisl. Cras hendrerit vehicula nisl, nec lobortis neque
+    commodo ac. Nulla pretium ligula vitae dolor ultricies mollis.
+  </p>
+  <p>
+    Suspendisse venenatis nisl at quam faucibus laoreet. Vestibulum porta, diam
+    at eleifend sollicitudin, leo nisl vehicula ex, pretium accumsan turpis nibh
+    a nibh. Fusce sed dui sagittis, imperdiet neque sed, venenatis eros.
+    Vestibulum consequat libero diam. Nam faucibus turpis eget lacinia malesuada.
+    Curabitur diam diam, cursus nec urna non, egestas consectetur enim. Donec
+    volutpat lobortis leo nec volutpat. Morbi ut feugiat enim. Integer finibus
+    pellentesque dolor, ut egestas turpis maximus sed. Pellentesque tempor augue
+    ex, id vehicula enim sagittis vel. Morbi lectus sem, interdum ac ipsum vitae,
+    tristique porta velit.
+  </p>
+  <p>
+    Sed vel blandit sem, nec placerat ante. Vivamus lobortis fringilla varius.
+    Integer mi metus, feugiat vel massa sit amet, finibus imperdiet quam. In
+    iaculis eros eget fermentum pellentesque. Phasellus vitae augue tincidunt,
+    volutpat elit nec, scelerisque orci. Mauris cursus tincidunt suscipit.
+    Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere
+    cubilia curae; Quisque auctor odio nec lacus bibendum porta. Nam viverra
+    mattis neque ac gravida.
+  </p>
+  <p>
+    Aliquam elementum scelerisque malesuada. Orci varius natoque penatibus et
+    magnis dis parturient montes, nascetur ridiculus mus. Mauris nec tincidunt
+    magna. Fusce dolor nibh, ullamcorper vel mattis eu, consectetur eget tellus.
+    Vivamus vitae felis quis risus suscipit dignissim vitae sit amet elit.
+    Aenean tincidunt massa eu neque feugiat iaculis. Curabitur dignissim est
+    massa, sit amet facilisis lacus porttitor nec. Cras porttitor leo ut nunc
+    aliquet vehicula. Aliquam gravida, justo in vestibulum fringilla, nulla
+    tortor placerat arcu, nec consequat purus libero quis nisl. Praesent maximus
+    mollis metus eget feugiat. Suspendisse eget accumsan dui. Curabitur lectus
+    lectus, lobortis sed malesuada dignissim, tristique sed lacus. Sed sit amet
+    vehicula sem, vitae eleifend turpis. Integer a convallis elit. Nullam eget
+    diam fringilla, rhoncus tellus non, viverra ligula. Morbi elementum, purus
+    in molestie pulvinar, felis velit mattis lectus, rhoncus efficitur tortor
+    odio quis mauris.
+  </p>
+  <p>
+    Nulla sem libero, pretium et accumsan non, tincidunt et augue. Praesent vitae
+    risus nec lacus sodales facilisis sit amet ac dui. Proin id justo purus. Proin
+    ac erat non erat dignissim efficitur nec vitae ipsum. Nunc a ornare sapien.
+    Suspendisse ut diam vel mi sodales viverra. Sed commodo purus vehicula ipsum
+    mollis pharetra.
+  </p>
 
+</div>
+
+<!-- JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 <script>
+  document.getElementById("exportPdfButton").addEventListener("click", function () {
+    const elementToExport = document.getElementById("nodeToExport"); // Replace 'nodeToExport' with the ID of the specific node you want to export
+    const opt = {
+      margin: 10,
+      filename: "exported_node.pdf",
+      image: { type: "jpeg", quality: 0.98 },
+      html2canvas: { scale: 2 },
+      jsPDF: { unit: "mm", format: "a4", orientation: "portrait" },
+    };
 
-  var order = "asc";
-
-  function sortColumn(column){
-
-    const table = document.querySelector('table');
-    const tbody = table.querySelector("tbody");
-    const rows = Array.from(tbody.querySelectorAll('tr'));
-    
-    rows.sort((row1, row2) => {
-      const cell1 = row1.children[column].innerText.toLowerCase();
-      const cell2 = row2.children[column].innerText.toLowerCase();
-      return order === 'asc' ? cell1.localeCompare(cell2, {numeric: true}) : cell2.localeCompare(cell1, {numeric: true});
-    });
-
-    order = order == "asc" ? "desc" : "asc";
-
-    rows.forEach(row => tbody.appendChild(row));
-
-  }
-
-  // let currentSortOrder = 'asc';
-
-  // function sortColumn(column) {
-  //   const table = document.querySelector('table');
-  //   const tbody = table.querySelector('tbody');
-  //   const rows = Array.from(tbody.querySelectorAll('tr'));
-
-  //   rows.sort((row1, row2) => {
-  //     const cell1 = row1.children[column].innerText.toLowerCase();
-  //     const cell2 = row2.children[column].innerText.toLowerCase();
-  //     return currentSortOrder === 'asc' ? cell1.localeCompare(cell2, undefined, { numeric: true }) : cell2.localeCompare(cell1, undefined, { numeric: true });
-  //   });
-
-  //   currentSortOrder = currentSortOrder === 'asc' ? 'desc' : 'asc';
-
-  //   rows.forEach(row => tbody.appendChild(row));
-  // }
-
+    html2pdf().from(elementToExport).set(opt).save();
+  });
 </script>

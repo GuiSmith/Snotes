@@ -124,8 +124,6 @@
 			document.title = "<?php echo $page_title ?>";
 			console.log(document.title);
 
-			console.log(teset);
-
 			//Text editor
 			$(document).ready(function() {
           $('#summernote').summernote();

@@ -88,7 +88,7 @@
 			if (isset($_GET["redirect"])) {
 				header("Location: ../main.php?page=" . $_GET["redirect"]);
 			}else{
-				header("Location: ../main.php?page={$home->pageCode}");
+				header("Location: ../main.php?page={$origin->pageCode}");
 			}
 
 		}else{

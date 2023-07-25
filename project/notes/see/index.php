@@ -1,17 +1,12 @@
 <?php
 
 	if (isset($_GET["note"])) {
-
 		$note_id = $_GET["note"];
-
 		$note_sql = "SELECT * FROM notes WHERE id = '$note_id'";
-
 		$note_result = mysqli_query($conn, $note_sql);
-
+		
 		if (mysqli_num_rows($note_result) == 1) {
-			
 			$note = mysqli_fetch_assoc($note_result);
-
 			if ($note["user_id"] != $_SESSION["user"]["id"]) {
 				if ($note["visibility"] != "private") {
 					createHeader("Anotação pessoal", "Esta anotação é pessoal");
@@ -43,11 +38,14 @@
 				}else{
 					$header_subtitle = "Minha anotação";
 				}
+				echo "<article id = 'note-container' >";
 				createHeader($note["title"],$header_subtitle);
-				echo "<div class = 'box-center box-content box-editor' >";
+				echo "<div id = 'note-text' class = 'box-center box-content box-editor' >";
+				echo "<img id = 'export-button' src = 'media/pdf2.png' width = '30' >";
 				echo $note_decrypted_text;
 				$page_title = $note["title"];
 				echo "</div>";
+				echo "</article>";
 			}else{
 				createHeader("Anotação Excluída","Esta anotação foi excluída pelo autor");
 				$form_display = "none";
@@ -86,9 +84,5 @@
 		</div>
 	</div>
 </form>
-<script>
-	function confirmSubmit(){
-		var operation = document.querySelector("button[name='operation']:focus").value;
-		return confirm("Tem certeza de que deseja excluir esta anotação? Essa ação é irreversível!");
-	}
-</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+<script src = "<?php echo $see_note->fileName ?>/index.js" ></script>

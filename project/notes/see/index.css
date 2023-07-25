@@ -1,0 +1,15 @@
+#note-text {
+	position: relative;
+}
+
+#note-text img {
+	position: absolute;
+	right: 0;
+	top: 0;
+	cursor: pointer;
+	border-radius: 5px;
+}
+
+#note-text img:hover {
+	background-color: ;
+}

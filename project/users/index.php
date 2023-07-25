@@ -41,7 +41,6 @@
 <script src = "users/index.js"></script>
 
 <?php
-
 	if ($_SERVER['REQUEST_METHOD'] == "POST" ) {
 		$option = $_POST["filter_option"];
 		$value = $_POST["filter_text"];
@@ -89,11 +88,11 @@
 						mysqli_num_rows($notes_result)
 					];
 					echo "<tr class = 'user-line' onclick = 'seeRegister({$notes->pageCode}, \"user_id\",{$user["id"]})' >";
-					createTLine($table_line, 4);
+					$text_left = [2-1, 3-1, 4-1];
+					createTLine($table_line, $text_left);
 					echo "</tr>";
 				}
 			?>
 		</tbody>
 	</table>
 </div>
-

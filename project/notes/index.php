@@ -219,7 +219,8 @@
 					$visibility
 				];
 				echo "<tr class = 'note-line' onclick = 'seeRegister({$see_note->pageCode}, \"note\",{$row["id"]})' >";
-				createTLine($table_line, 3);
+				$text_left = [3-1];
+				createTLine($table_line, $text_left);
 				echo "</tr>";
 			}
 		?>
