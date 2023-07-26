@@ -163,4 +163,19 @@
     echo $text;
     echo "</button>";
   }
+  
+  //Create Text container
+  function createTextBlock ($title, $text_array, $header = "h3" ){
+    //Title
+    echo "<{$header}>";
+    echo $title;
+    echo "</{$header}>";
+
+    //Text
+    for($i = 0; $i < count($text_array); $i++){
+      echo "<p>";
+      echo $text_array[$i];
+      echo "</p>";
+    }
+  }
 ?>

@@ -107,7 +107,7 @@
 
 			</span>
 
-			<a href = "">O que são parâmetros de privacidade?</a>
+			<bold id = "tooltip" title = "Ao marcar como pessoal, esta anotação só pode ser visualizada pelo autor. Se marcado como privado, esta anotação pode ser visualizada por qualquer usuário" >?</bold>
 
 		</div>
 

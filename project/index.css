@@ -116,3 +116,17 @@ select, option {
 	text-align: justify;
 	text-indent: 1rem;
 }
+
+.animated-image {
+  animation: opacity 4s;
+}
+
+@keyframes opacity {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}

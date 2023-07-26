@@ -1,0 +1,7 @@
+#tooltip {
+  color: white;
+  background-color: darkblue;
+  border-radius: 50%;
+  padding: 0 3px;
+  cursor: help;
+}

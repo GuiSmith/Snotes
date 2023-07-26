@@ -8,46 +8,78 @@
 
 ?>
 
-<section>
-	
-	<h4>Snotes</h4>
+<section class = "row" >
+	<div class = "col-sm-4" >
+		<img src = "media/home/note.png" class = "animated-image" >
+	</div>
+	<div class = "col-sm-8" >
+		<div class = "box-content box-center box-text" >
+			<?php
+				//Snotes
+				$text = [
+					"Snotes é um site incrível que permite que você organize suas ideias, pensamentos e histórias de maneira fácil e intuitiva. Com Snotes, você pode criar anotações de forma conveniente e classificá-las de acordo com sua privacidade."
+				];
+				createTextBlock(
+					"Snotes",
+					$text,
+				);
 
-	<p>
+				//Anotações
+				$text = [
+					"Com as anotações, você pode registrar suas observações diárias, listar tarefas importantes ou até mesmo escrever seus pensamentos mais íntimos. As anotações podem ser pessoais, permitindo que você mantenha suas reflexões privadas, ou privadas, para que outras pessoas possam ver ao entrar em seu usuário."
+				];
+				createTextBlock(
+					"Anotações",
+					$text
+				);
 
-		Snotes é um site incrível que permite que você organize suas ideias, pensamentos e histórias de maneira fácil e intuitiva. Com Snotes, você pode criar anotações e histórias de forma conveniente, e classificá-las de acordo com sua privacidade e compartilhamento.
-
-	</p>
-
-	<h4>Anotações</h4>
-
-	<p>
-		
-		Com as anotações, você pode registrar suas observações diárias, listar tarefas importantes ou até mesmo escrever seus pensamentos mais íntimos. As anotações podem ser pessoais, permitindo que você mantenha suas reflexões privadas, ou privadas, para compartilhar com um grupo seleto de pessoas.
-
-	</p>
-
-	<h4>Histórias</h4>
-
-	<p>
-		
-		As histórias são um espaço onde você pode soltar sua criatividade e compartilhar experiências significativas. Elas podem ser pessoais, servindo como um diário online, ou privadas, permitindo que você compartilhe suas memórias com pessoas específicas. Além disso, você pode optar por tornar suas histórias compartilhadas, permitindo que amigos e familiares próximos acessem e se envolvam com suas narrativas. Se você está se sentindo especialmente inspirado, pode até tornar suas histórias públicas, compartilhando-as com a comunidade do Snotes e recebendo feedback valioso.
-
-	</p>
-
-	<h4>Privacidade</h4>
-
-	<p>
-		
-		No Snotes, sua privacidade é uma prioridade. Você terá total controle sobre quem pode ver suas anotações e histórias. Além disso, a plataforma é projetada com simplicidade e facilidade de uso em mente, para que você possa se concentrar no que realmente importa: suas palavras e suas histórias.
-
-	</p>
-
-	<h4>Junte-se a nós!</h4>
-
-	<p>
-		
-		Então, não espere mais! Junte-se à comunidade do Snotes e comece a explorar um mundo de anotações e histórias cativantes. Deixe sua criatividade fluir, compartilhe suas memórias e descubra a alegria de expressar-se por meio das palavras. Snotes está aqui para ajudá-lo a transformar suas ideias em realidade.
-		
-	</p>
-
+				//Histórias
+				$text = [
+					"Com o editor de texto Summernote, desenvolvido por <a href = \"https://summernote.org/team/\" >Alan e seu time</a>, é possível utilizar Snotes para criar histórias, assim você pode soltar sua criatividade e compartilhar experiências significativas. Elas podem ser pessoais, servindo como um diário online, ou privadas, permitindo que você compartilhe suas memórias com outras pessoas."
+				];
+				createTextBlock(
+					"Histórias",
+					$text
+				);
+			?>
+		</div>
+	</div>
 </section>
+
+<article class = "row" >
+	<div class = "col-sm-8" >
+		<div class = "box-content box-center box-text" >
+			<?php
+				//Privacidade
+				$text = [
+					"No Snotes, sua privacidade é uma prioridade. Você terá total controle sobre quem pode ver suas anotações e histórias. Além disso, a plataforma é projetada com simplicidade e facilidade de uso em mente, para que você possa se concentrar no que realmente importa: suas palavras e suas histórias."
+				];
+				createTextBlock(
+					"Privacidade",
+					$text
+				);
+
+				//Arquivo PDF
+				$text = [
+					"Utilizando uma biblioteca da linguagem JavaScript, você pode realizar o download de sua anotação ou história no formato PDF! Apenas clique no ícone PDF no canto superior direito de sua anotação e o download do arquivo será realizado. Assim, você pode compartilhar sua anotação com quem ainda não tem o próprio acesso ao Snotes."
+				];
+				createTextBlock(
+					"Arquivo PDF",
+					$text
+				);
+
+				//Junte-se a nós
+				$text = [
+					"Então, não espere mais! Junte-se à comunidade do Snotes e comece a explorar um mundo de anotações e histórias cativantes. Deixe sua criatividade fluir, compartilhe suas memórias e descubra a alegria de expressar-se por meio das palavras. Snotes está aqui para ajudá-lo a transformar suas ideias em realidade."
+				];
+				createTextBlock(
+					"Junte-se a nós!",
+					$text
+				);
+			?>
+		</div>
+	</div>
+	<div class = "col-sm-4 text-center" >
+		<img src = "media/home/configuration3.png" width = "100%" class = "animated-image" >
+	</div>
+</article>

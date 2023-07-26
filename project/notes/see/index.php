@@ -41,7 +41,7 @@
 				echo "<article id = 'note-container' >";
 				createHeader($note["title"],$header_subtitle);
 				echo "<div id = 'note-text' class = 'box-center box-content box-editor' >";
-				echo "<img id = 'export-button' src = 'media/pdf2.png' width = '30' >";
+				echo "<img id = 'export-button' src = 'media/notes/pdf2.png' width = '30' >";
 				echo $note_decrypted_text;
 				$page_title = $note["title"];
 				echo "</div>";
