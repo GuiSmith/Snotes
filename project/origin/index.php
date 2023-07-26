@@ -7,6 +7,7 @@
 
 ?>
 
+<!-- Project and motivation -->
 <article class = "row" >
 	<div class = "col-sm-4" >
 		<img src = "media/origin//think.png" class = "animated-image" >
@@ -35,6 +36,8 @@
 		</div>
 	</div>
 </article>
+
+<!-- Stimulus -->
 <section class = "row" >
 	<div class = "col-sm-8" >
 		<div class = "box-content box-center box-text" >
@@ -54,6 +57,8 @@
 		<img src = "media/origin/lamp.png" width = "50%" class = "animated-image" >
 	</div>
 </section>
+
+<!-- Incentives -->
 <aside class = "row" >
 	<div class = "col-sm-5 text-center" >
 		<img src = "media/origin/gamer.png" class = "animated-image" >
